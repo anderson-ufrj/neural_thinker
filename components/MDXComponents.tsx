@@ -26,6 +26,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ul: (props) => <ul className="list-disc list-inside mb-4 space-y-1" {...props} />,
     ol: (props) => <ol className="list-decimal list-inside mb-4 space-y-1" {...props} />,
     li: (props) => <li className="text-gray-700 dark:text-gray-300" {...props} />,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     img: ({ src, alt, width, height, ...props }: any) => {
       const imgWidth = width ? (typeof width === 'string' ? parseInt(width, 10) : Number(width)) : 800;
       const imgHeight = height ? (typeof height === 'string' ? parseInt(height, 10) : Number(height)) : 400;

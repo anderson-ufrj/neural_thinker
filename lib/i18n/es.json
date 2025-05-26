@@ -1,0 +1,54 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "about": "Acerca",
+    "writing": "Escritos",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "home": {
+    "title": "Anderson Henrique",
+    "subtitle": "Arquitecto de Inteligencia Digital",
+    "description": "Donde la lógica encuentra la poesía y las máquinas se convierten en extensiones de la mente humana."
+  },
+  "about": {
+    "title": "Acerca de",
+    "bio": "Desarrollador y pensador en la intersección entre tecnología y humanidad. Con formación en Ciencias de la Computación (IFSULDEMINAS) y Filosofía (UFRJ), exploro cómo la inteligencia artificial puede amplificar nuestras capacidades cognitivas mientras preservamos nuestra esencia humana.",
+    "skills": "Habilidades",
+    "interests": "Intereses",
+    "skillsList": ["Python", "SQL", "R", "Django", "Next.js", "OSINT", "Machine Learning"],
+    "interestsList": ["Ética en IA", "OSINT", "Ciberseguridad", "Filosofía de la Tecnología"],
+    "education": "Formación",
+    "educationList": [
+      "Ciencias de la Computación - IFSULDEMINAS",
+      "Filosofía - UFRJ"
+    ]
+  },
+  "writing": {
+    "title": "Escritos",
+    "publishedOn": "Publicado el",
+    "originalIn": "Original en",
+    "readingTime": "min de lectura",
+    "viewAll": "Ver todos los escritos",
+    "translations": "Traducciones disponibles"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "viewProject": "Ver proyecto",
+    "technologies": "Tecnologías"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Hablemos sobre tecnología, filosofía o cualquier cosa interesante.",
+    "email": "Correo electrónico",
+    "social": "Redes sociales"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados"
+  },
+  "languages": {
+    "pt": "Portugués",
+    "en": "Inglés",
+    "es": "Español"
+  }
+}

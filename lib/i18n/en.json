@@ -1,0 +1,54 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "writing": "Writing",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Anderson Henrique",
+    "subtitle": "Digital Intelligence Architect",
+    "description": "Where logic meets poetry and machines become extensions of the human mind."
+  },
+  "about": {
+    "title": "About",
+    "bio": "Developer and thinker at the intersection of technology and humanity. With degrees in Computer Science (IFSULDEMINAS) and Philosophy (UFRJ), I explore how artificial intelligence can amplify our cognitive capabilities while preserving our human essence.",
+    "skills": "Skills",
+    "interests": "Interests",
+    "skillsList": ["Python", "SQL", "R", "Django", "Next.js", "OSINT", "Machine Learning"],
+    "interestsList": ["AI Ethics", "OSINT", "Cybersecurity", "Philosophy of Technology"],
+    "education": "Education",
+    "educationList": [
+      "Computer Science - IFSULDEMINAS",
+      "Philosophy - UFRJ"
+    ]
+  },
+  "writing": {
+    "title": "Writing",
+    "publishedOn": "Published on",
+    "originalIn": "Original in",
+    "readingTime": "min read",
+    "viewAll": "View all posts",
+    "translations": "Available translations"
+  },
+  "projects": {
+    "title": "Projects",
+    "viewProject": "View project",
+    "technologies": "Technologies"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's talk about technology, philosophy, or anything interesting.",
+    "email": "Email",
+    "social": "Social networks"
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  },
+  "languages": {
+    "pt": "Portuguese",
+    "en": "English",
+    "es": "Spanish"
+  }
+}

@@ -1,50 +1,57 @@
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
+import { getAllPosts } from '@/lib/mdx';
 
 export default async function HomePage() {
   const t = await getTranslations('home');
-  const tNav = await getTranslations('navigation');
+  const posts = await getAllPosts();
+  const recentPosts = posts.slice(0, 5);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-4">
-      <div className="max-w-4xl mx-auto text-center">
-        <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          {t('title')}
-        </h1>
-        <h2 className="text-2xl md:text-3xl font-light mb-6 text-gray-700 dark:text-gray-300">
+    <div className="container py-16">
+      <header className="mb-16">
+        <h1 className="text-3xl font-normal mb-4">Anderson Henrique</h1>
+        <p className="text-gray-600 dark:text-gray-400">
           {t('subtitle')}
-        </h2>
-        <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-          {t('description')}
         </p>
-        
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Link
-            href="/about"
-            className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-          >
-            {tNav('about')}
-          </Link>
-          <Link
-            href="/writing"
-            className="px-8 py-3 bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors font-medium"
-          >
-            {tNav('writing')}
-          </Link>
-          <Link
-            href="/projects"
-            className="px-8 py-3 bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors font-medium"
-          >
-            {tNav('projects')}
-          </Link>
-          <Link
-            href="/contact"
-            className="px-8 py-3 bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors font-medium"
-          >
-            {tNav('contact')}
-          </Link>
+      </header>
+
+      <section className="mb-16">
+        <h2 className="text-xl mb-6">Recent Writing</h2>
+        <div className="space-y-4">
+          {recentPosts.map((post) => (
+            <article key={post.slug} className="group">
+              <Link href={`/writing/${post.slug}`} className="block">
+                <h3 className="text-lg group-hover:text-[rgb(var(--accent))] transition-colors">
+                  {post.title}
+                </h3>
+                <time className="text-sm text-gray-500 dark:text-gray-500">
+                  {new Date(post.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+              </Link>
+            </article>
+          ))}
         </div>
-      </div>
+        <Link href="/writing" className="inline-block mt-6 text-sm">
+          View all posts →
+        </Link>
+      </section>
+
+      <section className="mb-16">
+        <h2 className="text-xl mb-6">About</h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
+          Software engineer and researcher interested in artificial intelligence, 
+          distributed systems, and building tools that enhance human capabilities.
+        </p>
+        <div className="flex gap-6 text-sm">
+          <Link href="/about">More about me →</Link>
+          <Link href="/contact">Contact →</Link>
+        </div>
+      </section>
     </div>
   );
 }

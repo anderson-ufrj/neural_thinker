@@ -26,7 +26,20 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ul: (props) => <ul className="list-disc list-inside mb-4 space-y-1" {...props} />,
     ol: (props) => <ol className="list-decimal list-inside mb-4 space-y-1" {...props} />,
     li: (props) => <li className="text-gray-700 dark:text-gray-300" {...props} />,
-    img: (props) => <Image className="rounded-lg my-4" width={800} height={400} {...props} alt={props.alt || ''} />,
+    img: ({ src, alt, width, height, ...props }) => {
+      const imgWidth = typeof width === 'string' ? parseInt(width) : width || 800;
+      const imgHeight = typeof height === 'string' ? parseInt(height) : height || 400;
+      return (
+        <Image 
+          className="rounded-lg my-4" 
+          src={src || ''} 
+          alt={alt || ''} 
+          width={imgWidth} 
+          height={imgHeight} 
+          {...props} 
+        />
+      );
+    },
     hr: () => <hr className="my-8 border-gray-300 dark:border-gray-700" />,
     ...components,
   };

@@ -21,7 +21,7 @@ export default function ClientLayout({ children, locale: initialLocale }: Props)
       document.cookie = `NEXT_LOCALE=${savedLocale};path=/;max-age=31536000`;
       router.refresh();
     }
-  }, []);
+  }, [locale, router]);
 
   const handleLocaleChange = (newLocale: string) => {
     setLocale(newLocale);

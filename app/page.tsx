@@ -1,6 +1,5 @@
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 export default async function HomePage() {
   const t = await getTranslations('home');

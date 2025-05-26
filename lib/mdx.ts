@@ -45,7 +45,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       readingTime: Math.ceil(stats.minutes).toString(),
       translations: data.translations || {},
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }

@@ -12,11 +12,13 @@
     --background: 0 0 0;
     --foreground: 255 255 255;
   }
-}
-
-@layer base {
+  
   body {
-    @apply bg-white text-black dark:bg-black dark:text-white;
+    @apply bg-white text-black dark:bg-black dark:text-white min-h-screen;
+  }
+  
+  * {
+    @apply border-gray-200 dark:border-gray-800;
   }
 }
 

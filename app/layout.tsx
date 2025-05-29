@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import '@/styles/globals.css';
@@ -28,6 +28,15 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' },
+    { media: '(prefers-color-scheme: dark)', color: '#111111' },
+  ],
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export default async function RootLayout({
   children,
 }: {
@@ -38,7 +47,10 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className="antialiased min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <head>
+        <meta name="color-scheme" content="light dark" />
+      </head>
+      <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ClientLayout locale={locale}>
             {children}

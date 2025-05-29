@@ -23,7 +23,27 @@ export type Post = {
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
-    const filePath = path.join(postsDirectory, `${slug}.mdx`);
+    // Try to find the file with the given slug, considering different formats
+    const possibleFiles = [
+      `${slug}.mdx`,
+      `${slug}.pt.mdx`,
+      `${slug}.en.mdx`,
+      `${slug}.es.mdx`
+    ];
+    
+    let filePath = '';
+    for (const file of possibleFiles) {
+      const fullPath = path.join(postsDirectory, file);
+      if (fs.existsSync(fullPath)) {
+        filePath = fullPath;
+        break;
+      }
+    }
+    
+    if (!filePath) {
+      return null;
+    }
+    
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContents);
     
@@ -34,8 +54,11 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     const contentHtml = processedContent.toString();
     const stats = readingTime(content);
 
+    // Extract the correct slug without language suffix if present
+    const actualSlug = slug.replace(/\.(pt|en|es)$/, '');
+
     return {
-      slug,
+      slug: actualSlug,
       title: data.title,
       date: data.date,
       language: data.language,
@@ -45,7 +68,8 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       readingTime: Math.ceil(stats.minutes).toString(),
       translations: data.translations || {},
     };
-  } catch {
+  } catch (error) {
+    console.error(`Error getting post ${slug}:`, error);
     return null;
   }
 }
@@ -56,14 +80,21 @@ export async function getAllPosts(): Promise<Post[]> {
   }
 
   const fileNames = fs.readdirSync(postsDirectory);
+  const uniqueSlugs = new Set<string>();
+  
+  // Extract unique slugs from filenames, removing language suffixes
+  fileNames
+    .filter(fileName => fileName.endsWith('.mdx'))
+    .forEach(fileName => {
+      const slug = fileName.replace(/\.(pt|en|es)?\.mdx$/, '');
+      uniqueSlugs.add(slug);
+    });
+  
   const allPosts = await Promise.all(
-    fileNames
-      .filter((fileName) => fileName.endsWith('.mdx'))
-      .map(async (fileName) => {
-        const slug = fileName.replace(/\.mdx$/, '');
-        const post = await getPostBySlug(slug);
-        return post;
-      })
+    Array.from(uniqueSlugs).map(async (slug) => {
+      const post = await getPostBySlug(slug);
+      return post;
+    })
   );
 
   return allPosts

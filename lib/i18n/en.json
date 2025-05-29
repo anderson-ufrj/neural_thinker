@@ -9,7 +9,10 @@
   "home": {
     "title": "Anderson Henrique",
     "subtitle": "Digital Intelligence Architect",
-    "description": "Where logic meets poetry and machines become extensions of the human mind."
+    "description": "Where logic meets poetry and machines become extensions of the human mind.",
+    "about": "About",
+    "moreAbout": "More about me",
+    "contact": "Contact"
   },
   "about": {
     "title": "About",
@@ -30,7 +33,8 @@
     "originalIn": "Original in",
     "readingTime": "min read",
     "viewAll": "View all posts",
-    "translations": "Available translations"
+    "translations": "Available translations",
+    "noPostsYet": "No posts available yet."
   },
   "projects": {
     "title": "Projects",

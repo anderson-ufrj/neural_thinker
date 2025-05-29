@@ -13,8 +13,8 @@ export default async function ContactPage() {
     },
     {
       name: 'GitHub',
-      href: 'https://github.com/anderson-ufrj',
-      username: '@anderson-ufrj',
+      href: 'https://github.com/anderson-h-silva',
+      username: '@anderson-h-silva',
       icon: '🐙'
     },
     {
@@ -32,26 +32,26 @@ export default async function ContactPage() {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold mb-8">{t('title')}</h1>
+    <div className="container py-16">
+      <h1 className="text-3xl mb-8">{t('title')}</h1>
       
-      <p className="text-lg text-gray-700 dark:text-gray-300 mb-12">
+      <p className="text-gray-600 dark:text-gray-400 mb-12">
         {t('subtitle')}
       </p>
       
       <div className="grid md:grid-cols-2 gap-12">
         <div>
-          <h2 className="text-2xl font-semibold mb-6">{t('email')}</h2>
+          <h2 className="text-xl mb-4">{t('email')}</h2>
           <Link
-            href="mailto:anderson.henrique@example.com"
-            className="text-blue-600 dark:text-blue-400 hover:underline text-lg"
+            href="mailto:anderson.silva@neuralthinker.com"
+            className="text-[rgb(var(--accent))] hover:underline"
           >
-            anderson.henrique@example.com
+            anderson.silva@neuralthinker.com
           </Link>
         </div>
         
         <div>
-          <h2 className="text-2xl font-semibold mb-6">{t('social')}</h2>
+          <h2 className="text-xl mb-4">{t('social')}</h2>
           <div className="space-y-4">
             {socialLinks.map((link) => (
               <Link
@@ -59,7 +59,7 @@ export default async function ContactPage() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-[rgb(var(--accent))] transition-colors"
               >
                 <span className="text-2xl">{link.icon}</span>
                 <div>

@@ -1,40 +1,55 @@
-export default function AboutPage() {
+import { getTranslations } from 'next-intl/server';
+
+export default async function AboutPage() {
+  const t = await getTranslations('about');
+  
+  // Get arrays from translations
+  const skillsList: string[] = t.raw('skillsList');
+  const interestsList: string[] = t.raw('interestsList');
+  const educationList: string[] = t.raw('educationList');
+  
   return (
     <div className="container py-16 max-w-xl">
-      <h1 className="text-3xl mb-8">About</h1>
+      <h1 className="text-3xl mb-8">{t('title')}</h1>
       
       <div className="prose prose-lg dark:prose-invert">
         <p className="text-gray-600 dark:text-gray-400">
-          I'm Anderson Henrique, a software engineer and researcher based in Brazil. 
-          My work focuses on the intersection of artificial intelligence, distributed systems, 
-          and human-computer interaction.
+          {t('bio')}
         </p>
         
-        <p className="text-gray-600 dark:text-gray-400">
-          I believe in building technology that augments human intelligence rather than replacing it. 
-          My interests span from low-level systems programming to high-level AI research, 
-          always with a focus on creating tools that are both powerful and accessible.
-        </p>
-        
-        <h2 className="text-xl mt-12 mb-4">Currently</h2>
-        <p className="text-gray-600 dark:text-gray-400">
-          Working on neural interfaces and exploring how we can create more intuitive 
-          ways for humans to interact with AI systems.
-        </p>
-        
-        <h2 className="text-xl mt-12 mb-4">Previously</h2>
+        <h2 className="text-xl mt-12 mb-4">{t('skills')}</h2>
         <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
-          <li>Built distributed systems for real-time data processing</li>
-          <li>Researched applications of ML in cybersecurity</li>
-          <li>Contributed to open-source projects in the AI/ML space</li>
+          {skillsList.map((skill, index) => (
+            <li key={index}>{skill}</li>
+          ))}
+        </ul>
+        
+        <h2 className="text-xl mt-12 mb-4">{t('interests')}</h2>
+        <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+          {interestsList.map((interest, index) => (
+            <li key={index}>{interest}</li>
+          ))}
+        </ul>
+        
+        <h2 className="text-xl mt-12 mb-4">{t('education')}</h2>
+        <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2">
+          {educationList.map((education, index) => (
+            <li key={index}>{education}</li>
+          ))}
         </ul>
         
         <h2 className="text-xl mt-12 mb-4">Connect</h2>
         <p className="text-gray-600 dark:text-gray-400">
-          Feel free to reach out via <a href="/contact">email</a> or connect on{' '}
+          <a href="/contact">Email</a> | {' '}
+          <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a> | {' '}
+          <a href="https://github.com/anderson-h-silva" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a> | {' '}
           <a href="https://twitter.com/neural_thinker" target="_blank" rel="noopener noreferrer">
             Twitter
-          </a>.
+          </a>
         </p>
       </div>
     </div>

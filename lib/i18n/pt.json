@@ -9,7 +9,10 @@
   "home": {
     "title": "Anderson Henrique",
     "subtitle": "Arquiteto de Inteligência Digital",
-    "description": "Onde a lógica encontra a poesia e as máquinas se tornam extensões da mente humana."
+    "description": "Onde a lógica encontra a poesia e as máquinas se tornam extensões da mente humana.",
+    "about": "Sobre",
+    "moreAbout": "Mais sobre mim",
+    "contact": "Contato"
   },
   "about": {
     "title": "Sobre",
@@ -30,7 +33,8 @@
     "originalIn": "Original em",
     "readingTime": "min de leitura",
     "viewAll": "Ver todos os escritos",
-    "translations": "Traduções disponíveis"
+    "translations": "Traduções disponíveis",
+    "noPostsYet": "Nenhum artigo disponível ainda."
   },
   "projects": {
     "title": "Projetos",

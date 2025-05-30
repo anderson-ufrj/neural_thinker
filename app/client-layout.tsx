@@ -26,7 +26,13 @@ export default function ClientLayout({ children, locale: initialLocale }: Props)
     if (savedLocale && savedLocale !== locale) {
       setLocale(savedLocale);
       document.cookie = `NEXT_LOCALE=${savedLocale};path=/;max-age=31536000`;
-      router.refresh();
+      
+      // Get current path and redirect to the same path with new locale
+      const currentPath = window.location.pathname;
+      const pathWithoutLocale = currentPath.replace(/^\/(pt|en|es)/, '');
+      const newPath = savedLocale === 'pt' ? pathWithoutLocale : `/${savedLocale}${pathWithoutLocale}`;
+      
+      window.location.href = newPath || '/';
     }
   }, [locale, router, mounted]);
 
@@ -34,7 +40,13 @@ export default function ClientLayout({ children, locale: initialLocale }: Props)
     setLocale(newLocale);
     localStorage.setItem('locale', newLocale);
     document.cookie = `NEXT_LOCALE=${newLocale};path=/;max-age=31536000`;
-    router.refresh();
+    
+    // Get current path and redirect to the same path with new locale
+    const currentPath = window.location.pathname;
+    const pathWithoutLocale = currentPath.replace(/^\/(pt|en|es)/, '');
+    const newPath = newLocale === 'pt' ? pathWithoutLocale : `/${newLocale}${pathWithoutLocale}`;
+    
+    window.location.href = newPath || '/';
   };
 
   return (

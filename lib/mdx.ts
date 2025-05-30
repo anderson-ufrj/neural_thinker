@@ -25,7 +25,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
     // Try to find the file with the given slug, considering different formats
     const possibleFiles = [
-      `${slug}.mdx`,
       `${slug}.pt.mdx`,
       `${slug}.en.mdx`,
       `${slug}.es.mdx`
@@ -54,11 +53,10 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     const contentHtml = processedContent.toString();
     const stats = readingTime(content);
 
-    // Extract the correct slug without language suffix if present
-    const actualSlug = slug.replace(/\.(pt|en|es)$/, '');
-
+    // Use the slug as is
+    
     return {
-      slug: actualSlug,
+      slug,
       title: data.title,
       date: data.date,
       language: data.language,
@@ -86,7 +84,7 @@ export async function getAllPosts(): Promise<Post[]> {
   fileNames
     .filter(fileName => fileName.endsWith('.mdx'))
     .forEach(fileName => {
-      const slug = fileName.replace(/\.(pt|en|es)?\.mdx$/, '');
+      const slug = fileName.replace(/\.(pt|en|es)\.mdx$/, '');
       uniqueSlugs.add(slug);
     });
   

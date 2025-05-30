@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useEffect } from 'react';
 
 export default function Navigation({ 
   locale, 
@@ -16,6 +17,24 @@ export default function Navigation({
   const pathname = usePathname();
   const t = useTranslations('navigation');
   const tLang = useTranslations('languages');
+  
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      const dropdown = document.getElementById('language-dropdown');
+      const button = document.getElementById('language-button');
+      
+      if (dropdown && !dropdown.contains(event.target as Node) && 
+          button && !button.contains(event.target as Node)) {
+        dropdown.classList.add('hidden');
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const navItems = [
     { href: '/', label: t('home') },
@@ -54,18 +73,34 @@ export default function Navigation({
         </div>
         
         <div className="flex items-center gap-4">
-          <div className="relative group">
+          <div className="relative">
             <button
-              className="text-sm text-gray-500 hover:text-[rgb(var(--foreground))] transition-colors"
+              id="language-button"
+              className="text-sm text-gray-500 hover:text-[rgb(var(--foreground))] transition-colors flex items-center gap-1"
               aria-label="Change language"
+              onClick={() => {
+                const dropdown = document.getElementById('language-dropdown');
+                if (dropdown) {
+                  dropdown.classList.toggle('hidden');
+                }
+              }}
             >
               {locale.toUpperCase()}
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </button>
-            <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 shadow-lg rounded-md hidden group-hover:block z-10">
+            <div id="language-dropdown" className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 shadow-lg rounded-md hidden z-10">
               {locales.map((l) => (
                 <button
                   key={l.code}
-                  onClick={() => onLocaleChange(l.code)}
+                  onClick={() => {
+                    onLocaleChange(l.code);
+                    const dropdown = document.getElementById('language-dropdown');
+                    if (dropdown) {
+                      dropdown.classList.add('hidden');
+                    }
+                  }}
                   className={`block w-full text-left px-4 py-2 text-sm ${
                     locale === l.code
                       ? 'text-[rgb(var(--accent))]'

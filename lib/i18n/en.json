@@ -16,7 +16,18 @@
     "description": "Where logic meets poetry and machines become extensions of the human mind.",
     "about": "About",
     "moreAbout": "More about me",
-    "contact": "Contact"
+    "contact": "Contact",
+    "heroTitle": "Digital Intelligence Architect",
+    "heroSubtitle": "Exploring the nexus between technology and philosophy, where artificial intelligence meets human thought.",
+    "exploreButton": "Explore Content",
+    "aboutButton": "About Me",
+    "articlesSubtitle": "Exploring themes at the intersection of technology, ethics, and digital society.",
+    "aboutContent": "Developer and thinker at the intersection of technology and humanity. With degrees in Computer Science and Philosophy, I explore how artificial intelligence can amplify our cognitive capabilities while preserving our human essence.",
+    "expertise": "Expertise",
+    "education": "Education",
+    "ctaTitle": "Let's Connect",
+    "ctaText": "Interested in discussions about AI, OSINT, philosophy of technology, or collaborative projects? Get in touch so we can explore ideas together.",
+    "exploreContent": "Explore Content"
   },
   "about": {
     "title": "About",
@@ -52,7 +63,19 @@
     "social": "Social networks"
   },
   "footer": {
-    "rights": "All rights reserved"
+    "rights": "All rights reserved",
+    "tagline": "Where logic meets poetry and machines become extensions of the human mind.",
+    "quickLinks": "Quick Links",
+    "newsletter": "Newsletter",
+    "newsletterText": "Get the latest updates directly to your inbox.",
+    "emailPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "home": "Home",
+    "writing": "Writing",
+    "about": "About",
+    "contact": "Contact"
   },
   "languages": {
     "pt": "Portuguese",

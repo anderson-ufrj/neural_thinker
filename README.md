@@ -2,6 +2,8 @@
 
 Site pessoal multilíngue com suporte a português, inglês e espanhol. Desenvolvido com Next.js 14+, TypeScript, Tailwind CSS e MDX.
 
+🌐 **Site ao vivo:** [https://neural-thinker.vercel.app/pt](https://neural-thinker.vercel.app/pt)
+
 ## 🚀 Tecnologias
 
 - **Next.js 14+** - Framework React com App Router

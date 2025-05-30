@@ -16,7 +16,18 @@
     "description": "Onde a lógica encontra a poesia e as máquinas se tornam extensões da mente humana.",
     "about": "Sobre",
     "moreAbout": "Mais sobre mim",
-    "contact": "Contato"
+    "contact": "Contato",
+    "heroTitle": "Arquiteto de Inteligência Digital",
+    "heroSubtitle": "Exploração do nexo entre tecnologia e filosofia, onde a inteligência artificial encontra o pensamento humano.",
+    "exploreButton": "Explorar Conteúdo",
+    "aboutButton": "Sobre Mim",
+    "articlesSubtitle": "Explorando os temas na interseção da tecnologia, ética e sociedade digital.",
+    "aboutContent": "Desenvolvedor e pensador na interseção entre tecnologia e humanidade. Formado em Ciência da Computação e Filosofia, exploro como a inteligência artificial pode ampliar nossas capacidades cognitivas enquanto preservamos nossa essência humana.",
+    "expertise": "Especialidades",
+    "education": "Formação",
+    "ctaTitle": "Vamos Conectar",
+    "ctaText": "Interessado em discussões sobre IA, OSINT, filosofia da tecnologia ou projetos colaborativos? Entre em contato para explorarmos ideias juntos.",
+    "exploreContent": "Explorar Conteúdo"
   },
   "about": {
     "title": "Sobre",
@@ -52,7 +63,19 @@
     "social": "Redes sociais"
   },
   "footer": {
-    "rights": "Todos os direitos reservados"
+    "rights": "Todos os direitos reservados",
+    "tagline": "Onde a lógica encontra a poesia e as máquinas se tornam extensões da mente humana.",
+    "quickLinks": "Links Rápidos",
+    "newsletter": "Newsletter",
+    "newsletterText": "Receba as últimas atualizações diretamente na sua caixa de entrada.",
+    "emailPlaceholder": "Seu email",
+    "subscribe": "Inscrever",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Uso",
+    "home": "Início",
+    "writing": "Escritos",
+    "about": "Sobre",
+    "contact": "Contato"
   },
   "languages": {
     "pt": "Português",

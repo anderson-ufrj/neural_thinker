@@ -1,5 +1,19 @@
 import type { Metadata, Viewport } from 'next';
 import '@/styles/globals.css';
+import { Inter, Playfair_Display } from 'next/font/google';
+
+// Importar fontes
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
+});
 
 export const metadata: Metadata = {
   title: 'Anderson Henrique - Digital Intelligence Architect',
@@ -40,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning>
+    <html suppressHydrationWarning className={`${inter.variable} ${playfair.variable}`}>
       <head>
         <meta name="color-scheme" content="light dark" />
       </head>

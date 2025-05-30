@@ -4,68 +4,121 @@
 
 @layer base {
   :root {
-    --background: 255 255 255;
-    --foreground: 0 0 0;
-    --accent: 0 100 255;
-    --selection: rgba(0, 100, 255, 0.26);
-    --border: 234 234 234;
+    /* Base colors */
+    --background: 255, 255, 255;
+    --foreground: 20, 20, 22;
+    
+    /* Primary accent colors */
+    --accent: 24, 119, 242;
+    --accent-light: 91, 166, 255;
+    --accent-dark: 16, 75, 166;
+
+    /* Secondary colors */
+    --secondary: 118, 74, 188;
+    --secondary-light: 152, 107, 221;
+    --secondary-dark: 86, 46, 158;
+    
+    /* UI colors */
+    --border: 230, 230, 230;
+    --muted: 245, 245, 245;
+    --muted-foreground: 120, 120, 120;
+    
+    /* Feedback colors */
+    --success: 0, 148, 97;
+    --warning: 245, 159, 10;
+    --error: 220, 54, 46;
+
+    /* Effects */
+    --selection: rgba(24, 119, 242, 0.15);
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --card-shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.08);
+    
+    /* Animations */
+    --transition-short: 0.15s;
+    --transition-medium: 0.3s;
+    --transition-long: 0.5s;
   }
 
   .dark {
-    --background: 17 17 17;
-    --foreground: 238 238 238;
-    --accent: 71 161 255;
-    --selection: rgba(71, 161, 255, 0.26);
-    --border: 51 51 51;
+    --background: 15, 15, 20;
+    --foreground: 238, 238, 238;
+    
+    --accent: 71, 161, 255;
+    --accent-light: 125, 194, 255;
+    --accent-dark: 42, 118, 197;
+    
+    --secondary: 157, 102, 222;
+    --secondary-light: 188, 140, 246;
+    --secondary-dark: 118, 66, 178;
+    
+    --border: 50, 50, 55;
+    --muted: 35, 35, 40;
+    --muted-foreground: 170, 170, 170;
+    
+    --success: 39, 184, 126;
+    --warning: 252, 177, 49;
+    --error: 240, 87, 78;
+    
+    --selection: rgba(71, 161, 255, 0.25);
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --card-shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.4);
   }
   
+  /* Typography */
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
   
   body {
     @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))] min-h-screen;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--font-inter), sans-serif;
     line-height: 1.6;
+    transition: background-color var(--transition-medium) ease,
+                color var(--transition-medium) ease;
   }
   
   ::selection {
     background-color: var(--selection);
   }
   
+  /* Links and buttons */
   a {
-    @apply text-[rgb(var(--accent))] hover:underline transition-colors;
+    @apply text-[rgb(var(--accent))] hover:text-[rgb(var(--accent-dark))] dark:hover:text-[rgb(var(--accent-light))] transition-colors;
+    transition-duration: var(--transition-short);
   }
   
+  /* Typography */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-normal;
+    font-family: var(--font-playfair), serif;
     line-height: 1.2;
     text-wrap: balance;
+    letter-spacing: -0.02em;
   }
   
   h1 {
-    @apply text-2xl mb-8;
+    @apply text-3xl md:text-4xl font-bold mb-8;
   }
   
   h2 {
-    @apply text-xl mb-4 mt-8;
+    @apply text-2xl md:text-3xl font-semibold mb-6 mt-10;
   }
   
   h3 {
-    @apply text-lg mb-3 mt-6;
+    @apply text-xl md:text-2xl font-medium mb-4 mt-8;
   }
   
   p {
-    @apply mb-4;
+    @apply mb-4 text-base md:text-lg;
   }
   
   hr {
-    @apply border-t border-[rgb(var(--border))] my-8;
+    @apply border-t border-[rgb(var(--border))] my-12;
   }
   
   .container {
-    @apply max-w-2xl mx-auto px-6;
+    @apply max-w-3xl mx-auto px-6;
   }
   
   .prose {
@@ -73,12 +126,101 @@
   }
   
   .prose a {
-    @apply text-[rgb(var(--accent))];
+    @apply text-[rgb(var(--accent))] hover:text-[rgb(var(--accent-dark))] dark:hover:text-[rgb(var(--accent-light))];
+  }
+  
+  .prose pre {
+    @apply bg-[rgb(var(--muted))] p-4 rounded-lg overflow-x-auto;
+  }
+  
+  .prose code {
+    @apply bg-[rgb(var(--muted))] px-1 py-0.5 rounded;
+  }
+  
+  .prose img {
+    @apply rounded-lg shadow-md mx-auto;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-[rgb(var(--accent))] pl-4 italic;
+  }
+  
+  /* Cards and containers */
+  .card {
+    @apply bg-white dark:bg-[rgb(var(--muted))] rounded-xl p-6 shadow-md;
+    box-shadow: var(--card-shadow);
+    transition: transform var(--transition-medium) ease,
+                box-shadow var(--transition-medium) ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn var(--transition-medium) ease-out forwards;
+  }
+  
+  /* Grid layouts */
+  .grid-auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
   }
 }
 
-/* Remove scrollbar styling for cleaner look */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(var(--muted), 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--accent), 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--accent), 0.7);
+}
+
+/* Background Patterns */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(var(--foreground), 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(var(--foreground), 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Line Clamp Utilities */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

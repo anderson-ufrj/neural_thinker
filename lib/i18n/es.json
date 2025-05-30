@@ -6,6 +6,10 @@
     "projects": "Proyectos",
     "contact": "Contacto"
   },
+  "notFound": {
+    "message": "No se pudo encontrar esta página.",
+    "backHome": "Volver a la página de inicio"
+  },
   "home": {
     "title": "Anderson Henrique",
     "subtitle": "Arquitecto de Inteligencia Digital",

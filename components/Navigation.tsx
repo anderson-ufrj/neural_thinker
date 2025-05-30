@@ -37,10 +37,10 @@ export default function Navigation({
   }, []);
 
   const navItems = [
-    { href: '/', label: t('home') },
-    { href: '/writing', label: t('writing') },
-    { href: '/about', label: t('about') },
-    { href: '/contact', label: t('contact') },
+    { href: `/${locale}`, label: t('home') },
+    { href: `/${locale}/writing`, label: t('writing') },
+    { href: `/${locale}/about`, label: t('about') },
+    { href: `/${locale}/contact`, label: t('contact') },
   ];
 
   const locales = [

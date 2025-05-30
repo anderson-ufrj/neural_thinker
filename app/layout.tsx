@@ -1,8 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages } from 'next-intl/server';
 import '@/styles/globals.css';
-import ClientLayout from './client-layout';
 
 export const metadata: Metadata = {
   title: 'Anderson Henrique - Digital Intelligence Architect',
@@ -37,25 +34,18 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const locale = await getLocale();
-  const messages = await getMessages();
-
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <head>
         <meta name="color-scheme" content="light dark" />
       </head>
       <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <ClientLayout locale={locale}>
-            {children}
-          </ClientLayout>
-        </NextIntlClientProvider>
+        {children}
       </body>
     </html>
   );

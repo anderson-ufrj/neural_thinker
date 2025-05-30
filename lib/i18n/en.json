@@ -6,6 +6,10 @@
     "projects": "Projects",
     "contact": "Contact"
   },
+  "notFound": {
+    "message": "This page could not be found.",
+    "backHome": "Return to home page"
+  },
   "home": {
     "title": "Anderson Henrique",
     "subtitle": "Digital Intelligence Architect",

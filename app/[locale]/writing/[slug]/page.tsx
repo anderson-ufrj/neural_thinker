@@ -52,7 +52,7 @@ export default async function PostPage({
                   return (
                     <Link
                       key={lang}
-                      href={`/${lang}/writing/${slug}`}
+                      href={`/${lang}/writing/${slug.replace(/\.(pt|en|es)$/, '')}`}
                       className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                     >
                       {getLocaleDisplayName(lang)}

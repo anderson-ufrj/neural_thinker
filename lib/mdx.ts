@@ -23,11 +23,14 @@ export type Post = {
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
+    // Clean the slug (remove any language suffix if present)
+    const cleanSlug = slug.replace(/\.(pt|en|es)$/, '');
+    
     // Try to find the file with the given slug, considering different formats
     const possibleFiles = [
-      `${slug}.pt.mdx`,
-      `${slug}.en.mdx`,
-      `${slug}.es.mdx`
+      `${cleanSlug}.pt.mdx`,
+      `${cleanSlug}.en.mdx`,
+      `${cleanSlug}.es.mdx`
     ];
     
     let filePath = '';
@@ -53,10 +56,10 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     const contentHtml = processedContent.toString();
     const stats = readingTime(content);
 
-    // Use the slug as is
+    // Use the clean slug
     
     return {
-      slug,
+      slug: cleanSlug,
       title: data.title,
       date: data.date,
       language: data.language,
@@ -84,6 +87,7 @@ export async function getAllPosts(): Promise<Post[]> {
   fileNames
     .filter(fileName => fileName.endsWith('.mdx'))
     .forEach(fileName => {
+      // Extract base slug without language suffix
       const slug = fileName.replace(/\.(pt|en|es)\.mdx$/, '');
       uniqueSlugs.add(slug);
     });

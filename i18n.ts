@@ -1,9 +1,9 @@
 import {notFound} from 'next/navigation';
 import {getRequestConfig} from 'next-intl/server';
-import {locales} from './i18n/config';
+import {locales, Locale} from './i18n/config';
 
 export default getRequestConfig(async ({requestLocale}) => {
-  const locale = await requestLocale;
+  const locale = await requestLocale as Locale;
 
   if (!locale || !locales.includes(locale)) {
     notFound();

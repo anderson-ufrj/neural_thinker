@@ -12,26 +12,56 @@ const t = useTranslations(lang);
 
 <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 pt-16 relative overflow-hidden">
   <!-- Neural Network Background -->
-  <div class="absolute inset-0 opacity-20 dark:opacity-15 z-0">
+  <div class="absolute inset-0 opacity-30 dark:opacity-20 z-0">
     <canvas id="neuralCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
-    <!-- Fallback animated pattern -->
-    <div class="absolute inset-0 neural-fallback">
-      <div class="absolute top-1/4 left-1/4 w-3 h-3 bg-blue-500 rounded-full animate-pulse opacity-30"></div>
-      <div class="absolute top-1/2 left-1/3 w-2 h-2 bg-blue-400 rounded-full animate-pulse opacity-25" style="animation-delay: 0.5s"></div>
-      <div class="absolute top-3/4 left-1/2 w-4 h-4 bg-blue-600 rounded-full animate-pulse opacity-20" style="animation-delay: 1s"></div>
-      <div class="absolute top-1/3 right-1/4 w-3 h-3 bg-indigo-500 rounded-full animate-pulse opacity-35" style="animation-delay: 1.5s"></div>
-      <div class="absolute bottom-1/3 right-1/3 w-2 h-2 bg-indigo-400 rounded-full animate-pulse opacity-30" style="animation-delay: 2s"></div>
-      <!-- Connecting lines -->
-      <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+    <!-- Enhanced animated pattern -->
+    <div class="absolute inset-0 neural-network-bg">
+      <!-- Animated nodes -->
+      <div class="absolute top-1/4 left-1/4 w-4 h-4 bg-blue-500 rounded-full animate-pulse opacity-60 shadow-lg shadow-blue-500/50"></div>
+      <div class="absolute top-1/2 left-1/3 w-3 h-3 bg-blue-400 rounded-full animate-pulse opacity-50 shadow-md shadow-blue-400/50" style="animation-delay: 0.5s; animation-duration: 1.5s;"></div>
+      <div class="absolute top-3/4 left-1/2 w-5 h-5 bg-blue-600 rounded-full animate-pulse opacity-40 shadow-lg shadow-blue-600/50" style="animation-delay: 1s; animation-duration: 2s;"></div>
+      <div class="absolute top-1/3 right-1/4 w-3 h-3 bg-indigo-500 rounded-full animate-pulse opacity-70 shadow-md shadow-indigo-500/50" style="animation-delay: 1.5s; animation-duration: 1.8s;"></div>
+      <div class="absolute bottom-1/3 right-1/3 w-4 h-4 bg-indigo-400 rounded-full animate-pulse opacity-55 shadow-lg shadow-indigo-400/50" style="animation-delay: 2s; animation-duration: 1.2s;"></div>
+      <div class="absolute top-2/3 left-2/3 w-2 h-2 bg-purple-500 rounded-full animate-pulse opacity-45 shadow-sm shadow-purple-500/50" style="animation-delay: 2.5s; animation-duration: 1.7s;"></div>
+      <div class="absolute bottom-1/4 left-3/4 w-3 h-3 bg-cyan-500 rounded-full animate-pulse opacity-50 shadow-md shadow-cyan-500/50" style="animation-delay: 3s; animation-duration: 1.3s;"></div>
+      
+      <!-- Connecting lines with animation -->
+      <svg class="absolute inset-0 w-full h-full neural-connections" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="network-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-            <circle cx="20" cy="20" r="1.5" fill="rgb(59, 130, 246)" opacity="0.4"/>
-            <circle cx="80" cy="50" r="1" fill="rgb(59, 130, 246)" opacity="0.3"/>
-            <circle cx="50" cy="80" r="2" fill="rgb(99, 102, 241)" opacity="0.5"/>
-            <path d="M20 20 L80 50 M80 50 L50 80 M50 80 L20 20" stroke="rgb(59, 130, 246)" stroke-width="0.5" opacity="0.2"/>
+          <linearGradient id="connectionGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:rgb(59, 130, 246);stop-opacity:0.1" />
+            <stop offset="50%" style="stop-color:rgb(59, 130, 246);stop-opacity:0.6" />
+            <stop offset="100%" style="stop-color:rgb(99, 102, 241);stop-opacity:0.1" />
+          </linearGradient>
+          <pattern id="data-flow" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <circle cx="10" cy="10" r="1" fill="rgb(34, 197, 94)" opacity="0.8">
+              <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="30" cy="30" r="0.8" fill="rgb(59, 130, 246)" opacity="0.6">
+              <animate attributeName="opacity" values="0.1;0.6;0.1" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+            </circle>
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#network-pattern)"/>
+        
+        <!-- Animated connecting lines -->
+        <path d="M 25% 25% Q 40% 15% 33% 50%" stroke="url(#connectionGrad)" stroke-width="1" fill="none" opacity="0.4">
+          <animate attributeName="opacity" values="0.1;0.6;0.1" dur="3s" repeatCount="indefinite"/>
+        </path>
+        <path d="M 33% 50% Q 60% 40% 75% 75%" stroke="url(#connectionGrad)" stroke-width="1" fill="none" opacity="0.3">
+          <animate attributeName="opacity" values="0.1;0.5;0.1" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+        </path>
+        <path d="M 50% 75% Q 30% 60% 25% 25%" stroke="url(#connectionGrad)" stroke-width="1" fill="none" opacity="0.5">
+          <animate attributeName="opacity" values="0.1;0.7;0.1" dur="2s" repeatCount="indefinite" begin="1s"/>
+        </path>
+        <path d="M 75% 33% Q 55% 45% 67% 67%" stroke="url(#connectionGrad)" stroke-width="0.8" fill="none" opacity="0.3">
+          <animate attributeName="opacity" values="0.1;0.4;0.1" dur="2.8s" repeatCount="indefinite" begin="1.5s"/>
+        </path>
+        <path d="M 67% 67% Q 45% 55% 33% 33%" stroke="url(#connectionGrad)" stroke-width="0.8" fill="none" opacity="0.4">
+          <animate attributeName="opacity" values="0.1;0.6;0.1" dur="1.8s" repeatCount="indefinite" begin="2s"/>
+        </path>
+        
+        <!-- Data flow pattern overlay -->
+        <rect width="100%" height="100%" fill="url(#data-flow)" opacity="0.3"/>
       </svg>
     </div>
   </div>
@@ -154,229 +184,97 @@ const t = useTranslations(lang);
 </section>
 
 <script>
-  // Neural Network Animation
-  class NeuralNetwork {
-    constructor(canvas) {
-      this.canvas = canvas;
-      this.ctx = canvas.getContext('2d');
-      this.nodes = [];
-      this.connections = [];
-      this.animationId = null;
-      this.mousePos = { x: 0, y: 0 };
-      
-      this.init();
+  // Simplified Canvas Animation
+  function initNeuralCanvas() {
+    const canvas = document.getElementById('neuralCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    let animationId;
+    
+    // Set canvas size
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     }
     
-    init() {
-      this.resize();
-      this.createNodes();
-      this.createConnections();
-      this.addEventListeners();
-      this.animate();
-      
-      // Hide fallback animation
-      const fallback = document.querySelector('.neural-fallback');
-      if (fallback) {
-        fallback.style.display = 'none';
-        console.log('Canvas animation active, fallback hidden'); // Debug
-      }
-    }
-    
-    resize() {
-      this.canvas.width = this.canvas.offsetWidth;
-      this.canvas.height = this.canvas.offsetHeight;
-    }
-    
-    createNodes() {
-      const nodeCount = Math.min(50, Math.floor((this.canvas.width * this.canvas.height) / 8000));
-      this.nodes = [];
-      
-      for (let i = 0; i < nodeCount; i++) {
-        this.nodes.push({
-          x: Math.random() * this.canvas.width,
-          y: Math.random() * this.canvas.height,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          radius: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.6 + 0.3,
-          pulse: Math.random() * 0.02 + 0.01
-        });
-      }
-      console.log(`Created ${nodeCount} nodes`); // Debug
-    }
-    
-    createConnections() {
-      this.connections = [];
-      const maxDistance = 150;
-      
-      for (let i = 0; i < this.nodes.length; i++) {
-        for (let j = i + 1; j < this.nodes.length; j++) {
-          const dx = this.nodes[i].x - this.nodes[j].x;
-          const dy = this.nodes[i].y - this.nodes[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < maxDistance) {
-            this.connections.push({
-              nodeA: i,
-              nodeB: j,
-              opacity: (maxDistance - distance) / maxDistance * 0.3
-            });
-          }
-        }
-      }
-    }
-    
-    addEventListeners() {
-      this.canvas.addEventListener('mousemove', (e) => {
-        const rect = this.canvas.getBoundingClientRect();
-        this.mousePos.x = e.clientX - rect.left;
-        this.mousePos.y = e.clientY - rect.top;
-      });
-      
-      window.addEventListener('resize', () => {
-        this.resize();
-        this.createNodes();
-        this.createConnections();
+    // Create simple floating particles
+    const particles = [];
+    for (let i = 0; i < 20; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 3 + 1,
+        opacity: Math.random() * 0.5 + 0.2
       });
     }
     
-    animate() {
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Update and draw nodes
-      this.nodes.forEach((node, i) => {
-        // Mouse attraction
-        const dx = this.mousePos.x - node.x;
-        const dy = this.mousePos.y - node.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 100) {
-          const force = (100 - distance) / 100 * 0.03;
-          node.vx += dx / distance * force;
-          node.vy += dy / distance * force;
-        }
-        
+      // Draw particles
+      particles.forEach(particle => {
         // Update position
-        node.x += node.vx;
-        node.y += node.vy;
-        
-        // Boundary bouncing
-        if (node.x <= 0 || node.x >= this.canvas.width) node.vx *= -0.8;
-        if (node.y <= 0 || node.y >= this.canvas.height) node.vy *= -0.8;
-        
-        // Keep within bounds
-        node.x = Math.max(0, Math.min(this.canvas.width, node.x));
-        node.y = Math.max(0, Math.min(this.canvas.height, node.y));
-        
-        // Friction
-        node.vx *= 0.995;
-        node.vy *= 0.995;
-        
-        // Pulse effect
-        node.opacity = Math.sin(Date.now() * node.pulse) * 0.2 + 0.4;
-        
-        // Draw node
-        this.ctx.beginPath();
-        this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        this.ctx.fillStyle = `rgba(59, 130, 246, ${node.opacity})`;
-        this.ctx.fill();
-        
-        // Data flow particles
-        if (Math.random() < 0.02) {
-          this.createDataParticle(node.x, node.y);
-        }
-      });
-      
-      // Draw connections
-      this.connections.forEach(conn => {
-        const nodeA = this.nodes[conn.nodeA];
-        const nodeB = this.nodes[conn.nodeB];
-        
-        if (!nodeA || !nodeB) return;
-        
-        const dx = nodeA.x - nodeB.x;
-        const dy = nodeA.y - nodeB.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 150) {
-          const opacity = (150 - distance) / 150 * conn.opacity;
-          
-          // Animated connection
-          const pulse = Math.sin(Date.now() * 0.003) * 0.5 + 0.5;
-          
-          this.ctx.beginPath();
-          this.ctx.moveTo(nodeA.x, nodeA.y);
-          this.ctx.lineTo(nodeB.x, nodeB.y);
-          this.ctx.strokeStyle = `rgba(59, 130, 246, ${opacity * pulse})`;
-          this.ctx.lineWidth = 1;
-          this.ctx.stroke();
-          
-          // Data transmission effect
-          if (Math.random() < 0.01) {
-            this.drawDataTransmission(nodeA, nodeB);
-          }
-        }
-      });
-      
-      this.animationId = requestAnimationFrame(() => this.animate());
-    }
-    
-    createDataParticle(x, y) {
-      const particle = {
-        x, y,
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        life: 60,
-        maxLife: 60
-      };
-      
-      const drawParticle = () => {
         particle.x += particle.vx;
         particle.y += particle.vy;
-        particle.life--;
         
-        const alpha = particle.life / particle.maxLife * 0.8;
-        this.ctx.beginPath();
-        this.ctx.arc(particle.x, particle.y, 2, 0, Math.PI * 2);
-        this.ctx.fillStyle = `rgba(96, 165, 250, ${alpha})`;
-        this.ctx.fill();
+        // Bounce off edges
+        if (particle.x <= 0 || particle.x >= canvas.width) particle.vx *= -1;
+        if (particle.y <= 0 || particle.y >= canvas.height) particle.vy *= -1;
         
-        if (particle.life > 0) {
-          requestAnimationFrame(drawParticle);
-        }
-      };
+        // Keep in bounds
+        particle.x = Math.max(0, Math.min(canvas.width, particle.x));
+        particle.y = Math.max(0, Math.min(canvas.height, particle.y));
+        
+        // Draw particle with glow
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = 'rgb(59, 130, 246)';
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      });
       
-      drawParticle();
-    }
-    
-    drawDataTransmission(nodeA, nodeB) {
-      const steps = 20;
-      let step = 0;
-      
-      const animate = () => {
-        if (step <= steps) {
-          const progress = step / steps;
-          const x = nodeA.x + (nodeB.x - nodeA.x) * progress;
-          const y = nodeA.y + (nodeB.y - nodeA.y) * progress;
+      // Draw connections between nearby particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
           
-          this.ctx.beginPath();
-          this.ctx.arc(x, y, 3, 0, Math.PI * 2);
-          this.ctx.fillStyle = `rgba(34, 197, 94, 0.8)`;
-          this.ctx.fill();
-          
-          step++;
-          setTimeout(() => animate(), 50);
+          if (distance < 100) {
+            const opacity = (100 - distance) / 100 * 0.3;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
         }
-      };
-      
-      animate();
-    }
-    
-    destroy() {
-      if (this.animationId) {
-        cancelAnimationFrame(this.animationId);
       }
+      
+      animationId = requestAnimationFrame(animate);
     }
+    
+    // Initialize
+    resizeCanvas();
+    animate();
+    
+    // Handle resize
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      // Update particle positions for new canvas size
+      particles.forEach(particle => {
+        if (particle.x > canvas.width) particle.x = canvas.width;
+        if (particle.y > canvas.height) particle.y = canvas.height;
+      });
+    });
+    
+    console.log('Neural canvas initialized');
   }
 
   // Typewriter effect
@@ -395,19 +293,10 @@ const t = useTranslations(lang);
     type();
   }
   
-  // Initialize everything when page loads
+  // Initialize when page loads
   document.addEventListener('DOMContentLoaded', () => {
-    // Neural network animation
-    const canvas = document.getElementById('neuralCanvas');
-    if (canvas) {
-      // Ensure canvas has proper dimensions
-      setTimeout(() => {
-        const neuralNet = new NeuralNetwork(canvas);
-        console.log('Neural network initialized'); // Debug
-      }, 100);
-    } else {
-      console.log('Canvas not found'); // Debug
-    }
+    // Initialize canvas animation
+    setTimeout(initNeuralCanvas, 200);
     
     // Typewriter effect
     const typewriterElement = document.getElementById('typewriter');
@@ -416,16 +305,6 @@ const t = useTranslations(lang);
       setTimeout(() => {
         typeWriter(typewriterElement, text, 80);
       }, 1500);
-    }
-  });
-  
-  // Also try on window load as fallback
-  window.addEventListener('load', () => {
-    const canvas = document.getElementById('neuralCanvas');
-    if (canvas && !canvas.hasAttribute('data-initialized')) {
-      canvas.setAttribute('data-initialized', 'true');
-      const neuralNet = new NeuralNetwork(canvas);
-      console.log('Neural network initialized on window load'); // Debug
     }
   });
 </script>

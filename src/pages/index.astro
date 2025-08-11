@@ -1,0 +1,22 @@
+---
+// Redirect root to /pt (Portuguese as default)
+---
+
+<script>
+  // Client-side redirect to Portuguese version
+  if (typeof window !== 'undefined') {
+    window.location.href = '/pt';
+  }
+</script>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=/pt" />
+    <title>Neural Thinker - Redirecionando...</title>
+  </head>
+  <body>
+    <p><a href="/pt">Se você não foi redirecionado automaticamente, clique aqui</a></p>
+  </body>
+</html>

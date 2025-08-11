@@ -1,0 +1,53 @@
+---
+import { useTranslations } from '../i18n/utils';
+import { blogPosts } from '../data/blog';
+import BlogCard from './BlogCard.astro';
+
+export interface Props {
+  lang: 'pt' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Get latest 3 blog posts
+const latestPosts = blogPosts.slice(0, 3);
+---
+
+<section id="blog" class="py-20 bg-gray-50 dark:bg-gray-800">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        {t('blog.title')}
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        {lang === 'pt' 
+          ? 'Compartilho experiências e insights sobre IA, arquitetura de software e engenharia de dados.'
+          : 'I share experiences and insights about AI, software architecture and data engineering.'
+        }
+      </p>
+      <div class="w-20 h-1 bg-blue-600 mx-auto mt-6"></div>
+    </div>
+    
+    <!-- Blog Posts Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      {latestPosts.map(post => (
+        <BlogCard post={post} lang={lang} />
+      ))}
+    </div>
+    
+    <!-- View All Button -->
+    <div class="text-center">
+      <a
+        href="#contact"
+        class="inline-flex items-center px-8 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl"
+      >
+        <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+        </svg>
+        {t('blog.viewAll')}
+      </a>
+    </div>
+  </div>
+</section>

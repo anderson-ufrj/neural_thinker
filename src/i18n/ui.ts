@@ -1,0 +1,128 @@
+export const defaultLang = 'pt' as const;
+export const languages = {
+  pt: 'Português',
+  en: 'English',
+} as const;
+
+export type Language = keyof typeof languages;
+
+export const ui = {
+  pt: {
+    // Navigation
+    'nav.home': 'Início',
+    'nav.projects': 'Projetos',
+    'nav.about': 'Sobre',
+    'nav.blog': 'Blog',
+    'nav.certifications': 'Certificações',
+    'nav.contact': 'Contato',
+    
+    // Hero Section
+    'hero.greeting': 'Olá, eu sou',
+    'hero.role': 'Arquiteto de Inteligência Digital',
+    'hero.description': 'Engenheiro de software especializado em IA, arquitetura de sistemas e engenharia de dados',
+    'hero.cta.projects': 'Ver Projetos',
+    'hero.cta.contact': 'Entrar em Contato',
+    
+    // Projects Section
+    'projects.title': 'Projetos em Destaque',
+    'projects.viewAll': 'Ver Todos os Projetos',
+    'projects.viewGithub': 'Ver no GitHub',
+    'projects.viewLive': 'Ver Demo',
+    'projects.filterBy': 'Filtrar por:',
+    'projects.all': 'Todos',
+    
+    // About Section
+    'about.title': 'Sobre Mim',
+    'about.readMore': 'Ler mais',
+    'about.expertise': 'Expertise',
+    'about.experience': 'Experiência',
+    'about.philosophy': 'Filosofia',
+    
+    // Blog Section
+    'blog.title': 'Últimas Publicações',
+    'blog.readMore': 'Ler mais',
+    'blog.readingTime': 'min de leitura',
+    'blog.viewAll': 'Ver Todas as Publicações',
+    
+    // Certifications Section
+    'certifications.title': 'Certificações',
+    'certifications.viewCredential': 'Ver Credencial',
+    
+    // Contact Section
+    'contact.title': 'Vamos Conversar',
+    'contact.description': 'Interessado em colaborar ou tem alguma pergunta? Entre em contato!',
+    'contact.email': 'Email',
+    'contact.social': 'Redes Sociais',
+    
+    // Footer
+    'footer.rights': 'Todos os direitos reservados',
+    'footer.madeWith': 'Feito com',
+    
+    // Common
+    'theme.toggle': 'Alternar tema',
+    'theme.light': 'Claro',
+    'theme.dark': 'Escuro',
+    'language.toggle': 'English',
+    'back.to.top': 'Voltar ao topo',
+  },
+  en: {
+    // Navigation
+    'nav.home': 'Home',
+    'nav.projects': 'Projects',
+    'nav.about': 'About',
+    'nav.blog': 'Blog',
+    'nav.certifications': 'Certifications',
+    'nav.contact': 'Contact',
+    
+    // Hero Section
+    'hero.greeting': 'Hi, I\'m',
+    'hero.role': 'Digital Intelligence Architect',
+    'hero.description': 'Software engineer specialized in AI, system architecture and data engineering',
+    'hero.cta.projects': 'View Projects',
+    'hero.cta.contact': 'Get in Touch',
+    
+    // Projects Section
+    'projects.title': 'Featured Projects',
+    'projects.viewAll': 'View All Projects',
+    'projects.viewGithub': 'View on GitHub',
+    'projects.viewLive': 'View Demo',
+    'projects.filterBy': 'Filter by:',
+    'projects.all': 'All',
+    
+    // About Section
+    'about.title': 'About Me',
+    'about.readMore': 'Read more',
+    'about.expertise': 'Expertise',
+    'about.experience': 'Experience',
+    'about.philosophy': 'Philosophy',
+    
+    // Blog Section
+    'blog.title': 'Latest Posts',
+    'blog.readMore': 'Read more',
+    'blog.readingTime': 'min read',
+    'blog.viewAll': 'View All Posts',
+    
+    // Certifications Section
+    'certifications.title': 'Certifications',
+    'certifications.viewCredential': 'View Credential',
+    
+    // Contact Section
+    'contact.title': 'Let\'s Talk',
+    'contact.description': 'Interested in collaborating or have any questions? Get in touch!',
+    'contact.email': 'Email',
+    'contact.social': 'Social Media',
+    
+    // Footer
+    'footer.rights': 'All rights reserved',
+    'footer.madeWith': 'Made with',
+    
+    // Common
+    'theme.toggle': 'Toggle theme',
+    'theme.light': 'Light',
+    'theme.dark': 'Dark',
+    'language.toggle': 'Português',
+    'back.to.top': 'Back to top',
+  }
+} as const;
+
+export type UI = typeof ui[typeof defaultLang];

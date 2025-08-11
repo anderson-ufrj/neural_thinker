@@ -1,97 +1,150 @@
-# Neural Thinker - Personal Website
+# 🧠 Neural Thinker - Portfolio Website
 
-Site pessoal multilíngue com suporte a português, inglês e espanhol. Desenvolvido com Next.js 14+, TypeScript, Tailwind CSS e MDX.
+[![Astro](https://img.shields.io/badge/Astro-BC52EE?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-🌐 **Site ao vivo:** [https://neural-thinker.vercel.app/pt](https://neural-thinker.vercel.app/pt)
+> **Arquiteto de Inteligência Digital** - Single Page Application moderna e performática com suporte bilíngue (PT/EN)
 
-## 🚀 Tecnologias
+## ✨ Características
 
-- **Next.js 14+** - Framework React com App Router
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Estilização utility-first
-- **MDX** - Markdown com componentes React
-- **next-intl** - Internacionalização
-- **Framer Motion** - Animações
-- **Vercel** - Deploy e hosting
+- 🚀 **Astro 4.x** com SSG otimizado
+- 📱 **Single Page Application** com navegação suave
+- 🌐 **Bilíngue**: Português (padrão) e Inglês
+- 🎨 **Tailwind CSS 4.0** com design system
+- 🌙 **Dark/Light mode** com persistência
+- ⚡ **Performance otimizada** (Core Web Vitals)
+- 📊 **SEO completo** com Open Graph
+- 🔧 **TypeScript strict mode**
+- 📱 **Mobile-first responsive**
 
-## 📁 Estrutura
+## 🚀 Quick Start
 
-```
-neural-thinker/
-├── app/                    # Páginas e rotas
-├── components/             # Componentes React
-├── content/posts/          # Posts em MDX
-├── lib/                    # Utilitários e helpers
-│   └── i18n/              # Arquivos de tradução
-├── public/                 # Assets estáticos
-├── scripts/               # Scripts auxiliares
-└── styles/                # Estilos globais
-```
+### Pré-requisitos
+- Node.js 18+ 
+- npm 9+
 
-## 🛠️ Instalação
-
+### Instalação
 ```bash
-# Instalar dependências
+# Instale as dependências
 npm install
 
-# Rodar em desenvolvimento
+# Execute o servidor de desenvolvimento
 npm run dev
-
-# Build para produção
-npm run build
-
-# Rodar build de produção
-npm run start
 ```
 
-## ✍️ Criar Novo Post
-
+### Scripts Disponíveis
 ```bash
-# Criar post em português
-npm run new-post "Título do Post" --lang pt
-
-# Criar post em inglês
-npm run new-post "Post Title" --lang en
-
-# Criar post em espanhol
-npm run new-post "Título del Post" --lang es
+npm run dev          # Servidor de desenvolvimento
+npm run build        # Build para produção
+npm run preview      # Preview do build
+npm run astro        # CLI do Astro
 ```
 
-## 🌍 Internacionalização
+## 🏗️ Arquitetura
 
-O site suporta três idiomas:
-- Português (pt)
-- Inglês (en)
-- Espanhol (es)
-
-As traduções estão em `/lib/i18n/[idioma].json`.
-
-## 📝 Formato dos Posts
-
-```yaml
----
-title: "Título do Post"
-date: "2024-03-15"
-language: "pt"
-tags: ["tag1", "tag2"]
-excerpt: "Descrição breve do post"
-translations:
-  en: "slug-do-post-em-ingles"
-  es: null
----
-
-Conteúdo do post em Markdown...
+### Estrutura do Projeto
 ```
+src/
+├── components/          # Componentes reutilizáveis
+│   ├── Header.astro    # Navegação sticky
+│   ├── Hero.astro      # Seção hero com typewriter
+│   ├── Projects.astro  # Grid de projetos
+│   ├── About.astro     # Sobre mim
+│   ├── Blog.astro      # Últimos posts
+│   ├── Certifications.astro # Timeline
+│   ├── Contact.astro   # Formulário de contato
+│   └── Footer.astro    # Rodapé
+├── data/               # Dados estruturados
+│   ├── site.json      # Configurações globais
+│   ├── projects.ts    # Dados dos projetos
+│   ├── blog.ts        # Posts do blog
+│   ├── certifications.ts # Certificações
+│   └── about.ts       # Conteúdo sobre
+├── i18n/               # Internacionalização
+│   ├── ui.ts          # Traduções da interface
+│   └── utils.ts       # Helpers de i18n
+├── layouts/            # Layouts base
+│   └── Layout.astro   # Layout principal
+├── pages/              # Rotas
+│   ├── index.astro    # Redirect para /pt
+│   ├── pt/index.astro # Página PT
+│   └── en/index.astro # Página EN
+└── styles/
+    └── global.css     # Estilos globais
+```
+
+## 🌐 Internacionalização
+
+O site suporta **Português** (padrão) e **Inglês**:
+
+- **Português**: `/pt` (padrão) ou `/`
+- **Inglês**: `/en`
+- Toggle automático entre idiomas
+- URLs localizadas
+
+## 📱 Seções Principais
+
+### 🏠 Hero
+- Typewriter effect com role
+- Avatar/foto de perfil
+- CTAs para projetos e contato
+- Links para redes sociais
+
+### 💼 Projetos
+- Grid responsivo com cards
+- Filtros por tecnologia
+- Links para GitHub e demo
+- Hover effects
+
+### 👨‍💻 Sobre
+- Bio profissional
+- Expertise e experiência
+- Stats/métricas
+- Filosofia de trabalho
+
+### 📝 Blog
+- Cards com preview
+- Modal para conteúdo completo
+- Tags clicáveis
+- Tempo de leitura
+
+### 🏆 Certificações
+- Timeline visual
+- Links para credenciais
+- Hover animations
+
+### 📞 Contato
+- Informações de contato
+- Links para redes sociais
+- CTA para email/LinkedIn
+
+## 📈 Performance
+
+### Otimizações
+- Static Site Generation (SSG)
+- Asset optimization
+- Font optimization
+- Image lazy loading
+- CSS/JS minification
 
 ## 🚀 Deploy
 
-O site está configurado para deploy automático no Vercel:
+### Vercel (Recomendado)
+1. Conecte o repositório GitHub
+2. Configure as variáveis de ambiente
+3. Deploy automático a cada push
 
-1. Push para o branch `main`
-2. Vercel detecta mudanças automaticamente
-3. Build e deploy são executados
-4. Site atualizado em produção
+## 👨‍💻 Autor
 
-## 📄 Licença
+**Anderson Henrique**
+- 📧 Email: andersonhs27@gmail.com
+- 💼 LinkedIn: [anderson-h-silva95](https://linkedin.com/in/anderson-h-silva95)
+- 🐙 GitHub: [anderson-ufrj](https://github.com/anderson-ufrj)
 
-MIT
+---
+
+<div align="center">
+  <strong>Feito com ❤️ usando Astro + Tailwind CSS</strong>
+</div>

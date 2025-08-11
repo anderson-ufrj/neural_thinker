@@ -1,0 +1,29 @@
+{
+  "name": "Anderson Henrique",
+  "role": {
+    "pt": "Arquiteto de Inteligência Digital",
+    "en": "Digital Intelligence Architect"
+  },
+  "email": "andersonhs27@gmail.com",
+  "social": {
+    "github": "https://github.com/anderson-ufrj",
+    "linkedin": "https://www.linkedin.com/in/anderson-h-silva95/",
+    "twitter": "https://twitter.com/neural_thinker",
+    "instagram": "https://instagram.com/andhenrique_",
+    "facebook": "https://facebook.com/andersonhs95"
+  },
+  "seo": {
+    "title": {
+      "pt": "Anderson Henrique - Arquiteto de Inteligência Digital",
+      "en": "Anderson Henrique - Digital Intelligence Architect"
+    },
+    "description": {
+      "pt": "Engenheiro de software especializado em IA, arquitetura de sistemas distribuídos e engenharia de dados. Transformando complexidade técnica em soluções elegantes.",
+      "en": "Software engineer specialized in AI, distributed systems architecture and data engineering. Transforming technical complexity into elegant solutions."
+    },
+    "keywords": {
+      "pt": "inteligência artificial, arquitetura de software, engenharia de dados, python, machine learning, desenvolvimento web",
+      "en": "artificial intelligence, software architecture, data engineering, python, machine learning, web development"
+    }
+  }
+}

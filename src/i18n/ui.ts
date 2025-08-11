@@ -21,7 +21,7 @@ export const ui = {
     'hero.role': 'AI/ML Engineer',
     'hero.description': 'Engenheiro de IA e Machine Learning especializado em sistemas inteligentes e arquitetura de modelos',
     'hero.cta.projects': 'Ver Projetos',
-    'hero.cta.contact': 'Entrar em Contato',
+    'hero.cta.about': 'Sobre Mim',
     
     // Projects Section
     'projects.title': 'Projetos em Destaque',
@@ -79,7 +79,7 @@ export const ui = {
     'hero.role': 'AI/ML Engineer',
     'hero.description': 'AI and Machine Learning Engineer specialized in intelligent systems and model architecture',
     'hero.cta.projects': 'View Projects',
-    'hero.cta.contact': 'Get in Touch',
+    'hero.cta.about': 'About Me',
     
     // Projects Section
     'projects.title': 'Featured Projects',

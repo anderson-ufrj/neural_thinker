@@ -1,9 +1,15 @@
 {
-  "name": "Anderson Henrique",
+  "name": "Anderson Henrique da Silva",
+  "fullName": "ANDERSON HENRIQUE DA SILVA",
   "role": {
-    "pt": "AI/ML Engineer",
-    "en": "AI/ML Engineer"
+    "pt": "Software Engineer | MLOps | AI Systems Architect",
+    "en": "Software Engineer | MLOps | AI Systems Architect"
   },
+  "location": {
+    "pt": "Muzambinho, MG, Brasil",
+    "en": "Muzambinho, MG, Brazil"
+  },
+  "phone": "+55 35 98471-8935",
   "email": "andersonhs27@gmail.com",
   "social": {
     "github": "https://github.com/anderson-ufrj",
@@ -12,18 +18,30 @@
     "instagram": "https://instagram.com/andhenrique_",
     "facebook": "https://facebook.com/andersonhs95"
   },
+  "tagline": {
+    "pt": "🌐 Profissional Remoto Global | 🌍 Aberto a oportunidades internacionais | Disposto a relocar",
+    "en": "🌐 Global Remote Professional | 🌍 Open to international opportunities | Willing to relocate"
+  },
+  "summary": {
+    "pt": "Engenheiro de Software especializado em arquitetura de sistemas de IA, MLOps e desenvolvimento full-stack, com expertise em projetar, implantar e escalar soluções inteligentes para ambientes complexos orientados a dados.",
+    "en": "Software Engineer specializing in AI systems architecture, MLOps, and full-stack development, with expertise in designing, deploying, and scaling intelligent solutions for complex data-driven environments."
+  },
+  "philosophy": {
+    "pt": "\"Tecnologia não é apenas código—é filosofia, projetada.\"",
+    "en": "\"Technology is not just code—it is philosophy, engineered.\""
+  },
   "seo": {
     "title": {
-      "pt": "Anderson Henrique - AI/ML Engineer",
-      "en": "Anderson Henrique - AI/ML Engineer"
+      "pt": "Anderson Henrique da Silva - Software Engineer | MLOps | AI Systems Architect",
+      "en": "Anderson Henrique da Silva - Software Engineer | MLOps | AI Systems Architect"
     },
     "description": {
-      "pt": "Engenheiro de IA e Machine Learning especializado em sistemas inteligentes, arquitetura de modelos e engenharia de dados. Transformando dados em inteligência.",
-      "en": "AI and Machine Learning Engineer specialized in intelligent systems, model architecture and data engineering. Transforming data into intelligence."
+      "pt": "Engenheiro de Software especializado em arquitetura de sistemas de IA, MLOps e desenvolvimento full-stack. Especialista em Machine Learning, NLP e busca vetorial.",
+      "en": "Software Engineer specializing in AI systems architecture, MLOps, and full-stack development. Expert in Machine Learning, NLP, and vector search."
     },
     "keywords": {
-      "pt": "inteligência artificial, arquitetura de software, engenharia de dados, python, machine learning, desenvolvimento web",
-      "en": "artificial intelligence, software architecture, data engineering, python, machine learning, web development"
+      "pt": "inteligência artificial, MLOps, arquitetura de sistemas, python, machine learning, OSINT, cybersecurity, full-stack",
+      "en": "artificial intelligence, MLOps, systems architecture, python, machine learning, OSINT, cybersecurity, full-stack"
     }
   }
 }

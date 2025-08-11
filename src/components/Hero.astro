@@ -12,8 +12,28 @@ const t = useTranslations(lang);
 
 <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 pt-16 relative overflow-hidden">
   <!-- Neural Network Background -->
-  <div class="absolute inset-0 opacity-15 dark:opacity-10">
-    <canvas id="neuralCanvas" class="absolute inset-0 w-full h-full"></canvas>
+  <div class="absolute inset-0 opacity-20 dark:opacity-15 z-0">
+    <canvas id="neuralCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+    <!-- Fallback animated pattern -->
+    <div class="absolute inset-0 neural-fallback">
+      <div class="absolute top-1/4 left-1/4 w-3 h-3 bg-blue-500 rounded-full animate-pulse opacity-30"></div>
+      <div class="absolute top-1/2 left-1/3 w-2 h-2 bg-blue-400 rounded-full animate-pulse opacity-25" style="animation-delay: 0.5s"></div>
+      <div class="absolute top-3/4 left-1/2 w-4 h-4 bg-blue-600 rounded-full animate-pulse opacity-20" style="animation-delay: 1s"></div>
+      <div class="absolute top-1/3 right-1/4 w-3 h-3 bg-indigo-500 rounded-full animate-pulse opacity-35" style="animation-delay: 1.5s"></div>
+      <div class="absolute bottom-1/3 right-1/3 w-2 h-2 bg-indigo-400 rounded-full animate-pulse opacity-30" style="animation-delay: 2s"></div>
+      <!-- Connecting lines -->
+      <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="network-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+            <circle cx="20" cy="20" r="1.5" fill="rgb(59, 130, 246)" opacity="0.4"/>
+            <circle cx="80" cy="50" r="1" fill="rgb(59, 130, 246)" opacity="0.3"/>
+            <circle cx="50" cy="80" r="2" fill="rgb(99, 102, 241)" opacity="0.5"/>
+            <path d="M20 20 L80 50 M80 50 L50 80 M50 80 L20 20" stroke="rgb(59, 130, 246)" stroke-width="0.5" opacity="0.2"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#network-pattern)"/>
+      </svg>
+    </div>
   </div>
   
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -34,12 +54,9 @@ const t = useTranslations(lang);
         <p class="text-lg text-gray-600 dark:text-gray-400 mb-2">
           {t('hero.greeting')}
         </p>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-2">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
           {site.name}
         </h1>
-        <p class="text-sm text-blue-600 dark:text-blue-400 font-medium mb-2">
-          {site.tagline[lang]}
-        </p>
       </div>
       
       <!-- Role with Typewriter Effect -->
@@ -156,6 +173,13 @@ const t = useTranslations(lang);
       this.createConnections();
       this.addEventListeners();
       this.animate();
+      
+      // Hide fallback animation
+      const fallback = document.querySelector('.neural-fallback');
+      if (fallback) {
+        fallback.style.display = 'none';
+        console.log('Canvas animation active, fallback hidden'); // Debug
+      }
     }
     
     resize() {
@@ -164,20 +188,21 @@ const t = useTranslations(lang);
     }
     
     createNodes() {
-      const nodeCount = Math.floor((this.canvas.width * this.canvas.height) / 15000);
+      const nodeCount = Math.min(50, Math.floor((this.canvas.width * this.canvas.height) / 8000));
       this.nodes = [];
       
       for (let i = 0; i < nodeCount; i++) {
         this.nodes.push({
           x: Math.random() * this.canvas.width,
           y: Math.random() * this.canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          radius: Math.random() * 3 + 1,
-          opacity: Math.random() * 0.5 + 0.2,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          radius: Math.random() * 2 + 1,
+          opacity: Math.random() * 0.6 + 0.3,
           pulse: Math.random() * 0.02 + 0.01
         });
       }
+      console.log(`Created ${nodeCount} nodes`); // Debug
     }
     
     createConnections() {
@@ -375,7 +400,13 @@ const t = useTranslations(lang);
     // Neural network animation
     const canvas = document.getElementById('neuralCanvas');
     if (canvas) {
-      new NeuralNetwork(canvas);
+      // Ensure canvas has proper dimensions
+      setTimeout(() => {
+        const neuralNet = new NeuralNetwork(canvas);
+        console.log('Neural network initialized'); // Debug
+      }, 100);
+    } else {
+      console.log('Canvas not found'); // Debug
     }
     
     // Typewriter effect
@@ -385,6 +416,16 @@ const t = useTranslations(lang);
       setTimeout(() => {
         typeWriter(typewriterElement, text, 80);
       }, 1500);
+    }
+  });
+  
+  // Also try on window load as fallback
+  window.addEventListener('load', () => {
+    const canvas = document.getElementById('neuralCanvas');
+    if (canvas && !canvas.hasAttribute('data-initialized')) {
+      canvas.setAttribute('data-initialized', 'true');
+      const neuralNet = new NeuralNetwork(canvas);
+      console.log('Neural network initialized on window load'); // Debug
     }
   });
 </script>

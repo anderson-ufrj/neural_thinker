@@ -11,59 +11,9 @@ const t = useTranslations(lang);
 ---
 
 <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 pt-16 relative overflow-hidden">
-  <!-- Neural Network Background -->
-  <div class="absolute inset-0 opacity-30 dark:opacity-20 z-0">
-    <canvas id="neuralCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
-    <!-- Enhanced animated pattern -->
-    <div class="absolute inset-0 neural-network-bg">
-      <!-- Animated nodes -->
-      <div class="absolute top-1/4 left-1/4 w-4 h-4 bg-blue-500 rounded-full animate-pulse opacity-60 shadow-lg shadow-blue-500/50"></div>
-      <div class="absolute top-1/2 left-1/3 w-3 h-3 bg-blue-400 rounded-full animate-pulse opacity-50 shadow-md shadow-blue-400/50" style="animation-delay: 0.5s; animation-duration: 1.5s;"></div>
-      <div class="absolute top-3/4 left-1/2 w-5 h-5 bg-blue-600 rounded-full animate-pulse opacity-40 shadow-lg shadow-blue-600/50" style="animation-delay: 1s; animation-duration: 2s;"></div>
-      <div class="absolute top-1/3 right-1/4 w-3 h-3 bg-indigo-500 rounded-full animate-pulse opacity-70 shadow-md shadow-indigo-500/50" style="animation-delay: 1.5s; animation-duration: 1.8s;"></div>
-      <div class="absolute bottom-1/3 right-1/3 w-4 h-4 bg-indigo-400 rounded-full animate-pulse opacity-55 shadow-lg shadow-indigo-400/50" style="animation-delay: 2s; animation-duration: 1.2s;"></div>
-      <div class="absolute top-2/3 left-2/3 w-2 h-2 bg-purple-500 rounded-full animate-pulse opacity-45 shadow-sm shadow-purple-500/50" style="animation-delay: 2.5s; animation-duration: 1.7s;"></div>
-      <div class="absolute bottom-1/4 left-3/4 w-3 h-3 bg-cyan-500 rounded-full animate-pulse opacity-50 shadow-md shadow-cyan-500/50" style="animation-delay: 3s; animation-duration: 1.3s;"></div>
-      
-      <!-- Connecting lines with animation -->
-      <svg class="absolute inset-0 w-full h-full neural-connections" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="connectionGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:rgb(59, 130, 246);stop-opacity:0.1" />
-            <stop offset="50%" style="stop-color:rgb(59, 130, 246);stop-opacity:0.6" />
-            <stop offset="100%" style="stop-color:rgb(99, 102, 241);stop-opacity:0.1" />
-          </linearGradient>
-          <pattern id="data-flow" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-            <circle cx="10" cy="10" r="1" fill="rgb(34, 197, 94)" opacity="0.8">
-              <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="30" cy="30" r="0.8" fill="rgb(59, 130, 246)" opacity="0.6">
-              <animate attributeName="opacity" values="0.1;0.6;0.1" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
-            </circle>
-          </pattern>
-        </defs>
-        
-        <!-- Animated connecting lines -->
-        <path d="M 25% 25% Q 40% 15% 33% 50%" stroke="url(#connectionGrad)" stroke-width="1" fill="none" opacity="0.4">
-          <animate attributeName="opacity" values="0.1;0.6;0.1" dur="3s" repeatCount="indefinite"/>
-        </path>
-        <path d="M 33% 50% Q 60% 40% 75% 75%" stroke="url(#connectionGrad)" stroke-width="1" fill="none" opacity="0.3">
-          <animate attributeName="opacity" values="0.1;0.5;0.1" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
-        </path>
-        <path d="M 50% 75% Q 30% 60% 25% 25%" stroke="url(#connectionGrad)" stroke-width="1" fill="none" opacity="0.5">
-          <animate attributeName="opacity" values="0.1;0.7;0.1" dur="2s" repeatCount="indefinite" begin="1s"/>
-        </path>
-        <path d="M 75% 33% Q 55% 45% 67% 67%" stroke="url(#connectionGrad)" stroke-width="0.8" fill="none" opacity="0.3">
-          <animate attributeName="opacity" values="0.1;0.4;0.1" dur="2.8s" repeatCount="indefinite" begin="1.5s"/>
-        </path>
-        <path d="M 67% 67% Q 45% 55% 33% 33%" stroke="url(#connectionGrad)" stroke-width="0.8" fill="none" opacity="0.4">
-          <animate attributeName="opacity" values="0.1;0.6;0.1" dur="1.8s" repeatCount="indefinite" begin="2s"/>
-        </path>
-        
-        <!-- Data flow pattern overlay -->
-        <rect width="100%" height="100%" fill="url(#data-flow)" opacity="0.3"/>
-      </svg>
-    </div>
+  <!-- Neural Network Canvas -->
+  <div class="absolute inset-0 z-0">
+    <canvas id="neuralCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-60 dark:opacity-40"></canvas>
   </div>
   
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -184,97 +134,242 @@ const t = useTranslations(lang);
 </section>
 
 <script>
-  // Simplified Canvas Animation
-  function initNeuralCanvas() {
-    const canvas = document.getElementById('neuralCanvas');
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    let animationId;
-    
-    // Set canvas size
-    function resizeCanvas() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+  class NeuralNetworkAnimation {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.nodes = [];
+      this.connections = [];
+      this.signals = [];
+      this.animationId = null;
+      this.time = 0;
+      
+      this.setupCanvas();
+      this.createNetwork();
+      this.start();
     }
     
-    // Create simple floating particles
-    const particles = [];
-    for (let i = 0; i < 20; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 3 + 1,
-        opacity: Math.random() * 0.5 + 0.2
-      });
+    setupCanvas() {
+      const updateSize = () => {
+        const rect = this.canvas.getBoundingClientRect();
+        this.canvas.width = rect.width;
+        this.canvas.height = rect.height;
+        console.log(`Canvas resized: ${this.canvas.width}x${this.canvas.height}`);
+      };
+      
+      updateSize();
+      window.addEventListener('resize', updateSize);
     }
     
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    createNetwork() {
+      const layers = [4, 6, 6, 3]; // Neural network architecture
+      const layerSpacing = this.canvas.width / (layers.length + 1);
       
-      // Draw particles
-      particles.forEach(particle => {
-        // Update position
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-        
-        // Bounce off edges
-        if (particle.x <= 0 || particle.x >= canvas.width) particle.vx *= -1;
-        if (particle.y <= 0 || particle.y >= canvas.height) particle.vy *= -1;
-        
-        // Keep in bounds
-        particle.x = Math.max(0, Math.min(canvas.width, particle.x));
-        particle.y = Math.max(0, Math.min(canvas.height, particle.y));
-        
-        // Draw particle with glow
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'rgb(59, 130, 246)';
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(59, 130, 246, ${particle.opacity})`;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      });
+      let nodeId = 0;
       
-      // Draw connections between nearby particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 100) {
-            const opacity = (100 - distance) / 100 * 0.3;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
+      // Create nodes in layers
+      layers.forEach((nodeCount, layerIndex) => {
+        const layerX = layerSpacing * (layerIndex + 1);
+        const nodeSpacing = this.canvas.height / (nodeCount + 1);
+        
+        for (let i = 0; i < nodeCount; i++) {
+          this.nodes.push({
+            id: nodeId++,
+            x: layerX,
+            y: nodeSpacing * (i + 1),
+            layer: layerIndex,
+            activation: Math.random(),
+            targetActivation: Math.random(),
+            radius: 6
+          });
         }
+      });
+      
+      // Create connections between adjacent layers
+      layers.forEach((_, layerIndex) => {
+        if (layerIndex < layers.length - 1) {
+          const currentLayerNodes = this.nodes.filter(n => n.layer === layerIndex);
+          const nextLayerNodes = this.nodes.filter(n => n.layer === layerIndex + 1);
+          
+          currentLayerNodes.forEach(fromNode => {
+            nextLayerNodes.forEach(toNode => {
+              this.connections.push({
+                from: fromNode,
+                to: toNode,
+                weight: Math.random() * 2 - 1, // -1 to 1
+                activity: 0
+              });
+            });
+          });
+        }
+      });
+      
+      console.log(`Neural network created: ${this.nodes.length} nodes, ${this.connections.length} connections`);
+    }
+    
+    createSignal(startNode) {
+      // Create a signal that travels through the network
+      const targetNodes = this.connections
+        .filter(c => c.from.id === startNode.id)
+        .map(c => c.to);
+      
+      if (targetNodes.length > 0) {
+        targetNodes.forEach(targetNode => {
+          this.signals.push({
+            fromX: startNode.x,
+            fromY: startNode.y,
+            toX: targetNode.x,
+            toY: targetNode.y,
+            progress: 0,
+            speed: 0.02 + Math.random() * 0.03,
+            intensity: startNode.activation,
+            life: 1.0
+          });
+        });
+      }
+    }
+    
+    update() {
+      this.time += 0.01;
+      
+      // Update node activations with smooth transitions
+      this.nodes.forEach(node => {
+        // Gradually change target activation
+        if (Math.random() < 0.005) {
+          node.targetActivation = Math.random();
+        }
+        
+        // Smooth interpolation
+        const diff = node.targetActivation - node.activation;
+        node.activation += diff * 0.02;
+      });
+      
+      // Create new signals periodically
+      if (Math.random() < 0.1) {
+        const inputNodes = this.nodes.filter(n => n.layer === 0);
+        const randomNode = inputNodes[Math.floor(Math.random() * inputNodes.length)];
+        this.createSignal(randomNode);
       }
       
-      animationId = requestAnimationFrame(animate);
+      // Update signals
+      this.signals = this.signals.filter(signal => {
+        signal.progress += signal.speed;
+        signal.life -= 0.01;
+        return signal.progress < 1 && signal.life > 0;
+      });
+      
+      // Update connection activities based on signals
+      this.connections.forEach(conn => {
+        conn.activity *= 0.95; // Decay
+      });
+      
+      this.signals.forEach(signal => {
+        this.connections.forEach(conn => {
+          const signalX = signal.fromX + (signal.toX - signal.fromX) * signal.progress;
+          const signalY = signal.fromY + (signal.toY - signal.fromY) * signal.progress;
+          const connMidX = (conn.from.x + conn.to.x) / 2;
+          const connMidY = (conn.from.y + conn.to.y) / 2;
+          
+          const dist = Math.sqrt((signalX - connMidX) ** 2 + (signalY - connMidY) ** 2);
+          if (dist < 20) {
+            conn.activity = Math.max(conn.activity, signal.intensity * signal.life);
+          }
+        });
+      });
     }
     
-    // Initialize
-    resizeCanvas();
-    animate();
-    
-    // Handle resize
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      // Update particle positions for new canvas size
-      particles.forEach(particle => {
-        if (particle.x > canvas.width) particle.x = canvas.width;
-        if (particle.y > canvas.height) particle.y = canvas.height;
+    draw() {
+      // Clear canvas with slight trail effect
+      this.ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      
+      // Draw connections
+      this.connections.forEach(conn => {
+        const opacity = 0.1 + conn.activity * 0.4;
+        const lineWidth = 0.5 + conn.activity * 2;
+        
+        // Connection color based on weight
+        const color = conn.weight > 0 ? '59, 130, 246' : '239, 68, 68'; // Blue for positive, red for negative
+        
+        this.ctx.beginPath();
+        this.ctx.moveTo(conn.from.x, conn.from.y);
+        this.ctx.lineTo(conn.to.x, conn.to.y);
+        this.ctx.strokeStyle = `rgba(${color}, ${opacity})`;
+        this.ctx.lineWidth = lineWidth;
+        this.ctx.stroke();
       });
-    });
+      
+      // Draw nodes
+      this.nodes.forEach(node => {
+        const intensity = node.activation;
+        
+        // Node glow effect
+        const gradient = this.ctx.createRadialGradient(
+          node.x, node.y, 0,
+          node.x, node.y, node.radius * 3
+        );
+        gradient.addColorStop(0, `rgba(59, 130, 246, ${intensity * 0.8})`);
+        gradient.addColorStop(1, `rgba(59, 130, 246, 0)`);
+        
+        this.ctx.beginPath();
+        this.ctx.arc(node.x, node.y, node.radius * 3, 0, Math.PI * 2);
+        this.ctx.fillStyle = gradient;
+        this.ctx.fill();
+        
+        // Node core
+        this.ctx.beginPath();
+        this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        this.ctx.fillStyle = `rgba(59, 130, 246, ${0.6 + intensity * 0.4})`;
+        this.ctx.fill();
+        
+        // Node border
+        this.ctx.beginPath();
+        this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        this.ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 + intensity * 0.3})`;
+        this.ctx.lineWidth = 1;
+        this.ctx.stroke();
+      });
+      
+      // Draw signals
+      this.signals.forEach(signal => {
+        const x = signal.fromX + (signal.toX - signal.fromX) * signal.progress;
+        const y = signal.fromY + (signal.toY - signal.fromY) * signal.progress;
+        
+        // Signal trail
+        const gradient = this.ctx.createRadialGradient(x, y, 0, x, y, 8);
+        gradient.addColorStop(0, `rgba(34, 197, 94, ${signal.life * signal.intensity})`);
+        gradient.addColorStop(1, `rgba(34, 197, 94, 0)`);
+        
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, 8, 0, Math.PI * 2);
+        this.ctx.fillStyle = gradient;
+        this.ctx.fill();
+        
+        // Signal core
+        this.ctx.beginPath();
+        this.ctx.arc(x, y, 2, 0, Math.PI * 2);
+        this.ctx.fillStyle = `rgba(34, 197, 94, ${signal.life})`;
+        this.ctx.fill();
+      });
+    }
     
-    console.log('Neural canvas initialized');
+    animate() {
+      this.update();
+      this.draw();
+      this.animationId = requestAnimationFrame(() => this.animate());
+    }
+    
+    start() {
+      console.log('Neural network animation started');
+      this.animate();
+    }
+    
+    stop() {
+      if (this.animationId) {
+        cancelAnimationFrame(this.animationId);
+        this.animationId = null;
+      }
+    }
   }
 
   // Typewriter effect
@@ -292,11 +387,25 @@ const t = useTranslations(lang);
     
     type();
   }
-  
-  // Initialize when page loads
+
+  // Initialize everything
   document.addEventListener('DOMContentLoaded', () => {
-    // Initialize canvas animation
-    setTimeout(initNeuralCanvas, 200);
+    console.log('DOM loaded, initializing neural network...');
+    
+    // Initialize neural network animation
+    const canvas = document.getElementById('neuralCanvas');
+    if (canvas) {
+      // Wait a bit for layout to settle
+      setTimeout(() => {
+        try {
+          new NeuralNetworkAnimation(canvas);
+        } catch (error) {
+          console.error('Failed to initialize neural network:', error);
+        }
+      }, 300);
+    } else {
+      console.error('Neural canvas not found!');
+    }
     
     // Typewriter effect
     const typewriterElement = document.getElementById('typewriter');

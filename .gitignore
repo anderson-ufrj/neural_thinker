@@ -12,13 +12,26 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
 .env.production
+.env.local
 
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# IDE and editor folders
 .idea/
+.vscode/
+.vs/
+
+# Claude Code (development tool)
+.claude/
+.claude.json*
+CLAUDE.md
+
+# Other development files
+*.log
+.cache/
+coverage/
+.nyc_output/

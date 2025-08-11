@@ -1,7 +1,7 @@
 export const about = {
   pt: {
-    title: 'Arquiteto de Inteligência Digital',
-    description: `Engenheiro de software com especialização em inteligência artificial aplicada, arquitetura de sistemas distribuídos e engenharia de dados. Graduado em Ciência da Computação pela UFRJ, com foco em transformar complexidade técnica em soluções elegantes e escaláveis.`,
+    title: 'AI/ML Engineer',
+    description: `Engenheiro especializado em Inteligência Artificial e Machine Learning, com expertise em desenvolvimento de sistemas inteligentes, arquitetura de modelos e engenharia de dados. Graduado em Ciência da Computação pela UFRJ, transformando dados em inteligência para resolver problemas complexos.`,
     expertise: {
       title: 'Expertise',
       items: [
@@ -26,8 +26,8 @@ export const about = {
     }
   },
   en: {
-    title: 'Digital Intelligence Architect',
-    description: `Software engineer specialized in applied artificial intelligence, distributed systems architecture, and data engineering. Computer Science graduate from UFRJ, focused on transforming technical complexity into elegant and scalable solutions.`,
+    title: 'AI/ML Engineer',
+    description: `Engineer specialized in Artificial Intelligence and Machine Learning, with expertise in developing intelligent systems, model architecture and data engineering. Computer Science graduate from UFRJ, transforming data into intelligence to solve complex problems.`,
     expertise: {
       title: 'Expertise',
       items: [

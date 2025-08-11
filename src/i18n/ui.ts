@@ -18,8 +18,8 @@ export const ui = {
     
     // Hero Section
     'hero.greeting': 'Olá, eu sou',
-    'hero.role': 'Arquiteto de Inteligência Digital',
-    'hero.description': 'Engenheiro de software especializado em IA, arquitetura de sistemas e engenharia de dados',
+    'hero.role': 'AI/ML Engineer',
+    'hero.description': 'Engenheiro de IA e Machine Learning especializado em sistemas inteligentes e arquitetura de modelos',
     'hero.cta.projects': 'Ver Projetos',
     'hero.cta.contact': 'Entrar em Contato',
     
@@ -76,8 +76,8 @@ export const ui = {
     
     // Hero Section
     'hero.greeting': 'Hi, I\'m',
-    'hero.role': 'Digital Intelligence Architect',
-    'hero.description': 'Software engineer specialized in AI, system architecture and data engineering',
+    'hero.role': 'AI/ML Engineer',
+    'hero.description': 'AI and Machine Learning Engineer specialized in intelligent systems and model architecture',
     'hero.cta.projects': 'View Projects',
     'hero.cta.contact': 'Get in Touch',
     

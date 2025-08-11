@@ -28,7 +28,7 @@ export const projects: Project[] = [
       en: 'Government transparency analysis with AI and ML via Brazil\'s Transparency Portal API'
     },
     tags: ['Python', 'Machine Learning', 'Data Science', 'API', 'Government Data'],
-    image: '/images/projects/transparencia-br.png',
+    image: '/images/projects/placeholder.svg',
     github: 'https://github.com/anderson-ufrj/TransparenciaBR-Analytics',
     featured: true,
     date: '2024-01-15'
@@ -44,7 +44,7 @@ export const projects: Project[] = [
       en: 'Personal website developed with TypeScript and modern architecture'
     },
     tags: ['TypeScript', 'Web Development', 'Frontend', 'Astro'],
-    image: '/images/projects/neural-thinker.png',
+    image: '/images/projects/placeholder.svg',
     github: 'https://github.com/anderson-ufrj/neural_thinker',
     live: 'https://neural-thinker.com',
     featured: true,
@@ -61,7 +61,7 @@ export const projects: Project[] = [
       en: '2D game development as a Special Topics in Computer Science project'
     },
     tags: ['Python', 'Game Development', 'PyGame', 'UFRJ'],
-    image: '/images/projects/game-2d.png',
+    image: '/images/projects/placeholder.svg',
     github: 'https://github.com/anderson-ufrj/project-game-py',
     date: '2023-06-15'
   },
@@ -76,7 +76,7 @@ export const projects: Project[] = [
       en: 'Web data extraction system using Scrapy framework'
     },
     tags: ['Python', 'Scrapy', 'Web Scraping', 'Data Extraction'],
-    image: '/images/projects/scrapy.png',
+    image: '/images/projects/placeholder.svg',
     github: 'https://github.com/anderson-ufrj/ScrapyProject',
     date: '2023-08-10'
   }

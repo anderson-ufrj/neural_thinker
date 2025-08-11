@@ -1,8 +1,8 @@
 {
   "name": "Anderson Henrique",
   "role": {
-    "pt": "Arquiteto de Inteligência Digital",
-    "en": "Digital Intelligence Architect"
+    "pt": "AI/ML Engineer",
+    "en": "AI/ML Engineer"
   },
   "email": "andersonhs27@gmail.com",
   "social": {
@@ -14,12 +14,12 @@
   },
   "seo": {
     "title": {
-      "pt": "Anderson Henrique - Arquiteto de Inteligência Digital",
-      "en": "Anderson Henrique - Digital Intelligence Architect"
+      "pt": "Anderson Henrique - AI/ML Engineer",
+      "en": "Anderson Henrique - AI/ML Engineer"
     },
     "description": {
-      "pt": "Engenheiro de software especializado em IA, arquitetura de sistemas distribuídos e engenharia de dados. Transformando complexidade técnica em soluções elegantes.",
-      "en": "Software engineer specialized in AI, distributed systems architecture and data engineering. Transforming technical complexity into elegant solutions."
+      "pt": "Engenheiro de IA e Machine Learning especializado em sistemas inteligentes, arquitetura de modelos e engenharia de dados. Transformando dados em inteligência.",
+      "en": "AI and Machine Learning Engineer specialized in intelligent systems, model architecture and data engineering. Transforming data into intelligence."
     },
     "keywords": {
       "pt": "inteligência artificial, arquitetura de software, engenharia de dados, python, machine learning, desenvolvimento web",

@@ -35,3 +35,6 @@ CLAUDE.md
 .cache/
 coverage/
 .nyc_output/
+
+# Local scripts
+start-dev.sh

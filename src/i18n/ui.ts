@@ -11,10 +11,8 @@ export const ui = {
     // Navigation
     'nav.home': 'Início',
     'nav.projects': 'Projetos',
-    'nav.about': 'Sobre',
     'nav.blog': 'Blog',
-    'nav.certifications': 'Certificações',
-    'nav.contact': 'Contato',
+    'nav.tags': 'Tags',
     
     // Hero Section
     'hero.greeting': 'Olá, eu sou',
@@ -64,15 +62,15 @@ export const ui = {
     'theme.dark': 'Escuro',
     'language.toggle': 'English',
     'back.to.top': 'Voltar ao topo',
+    'booking.schedule': 'Agendar Conversa',
+    'booking.cta': 'Vamos conversar?',
   },
   en: {
     // Navigation
     'nav.home': 'Home',
     'nav.projects': 'Projects',
-    'nav.about': 'About',
     'nav.blog': 'Blog',
-    'nav.certifications': 'Certifications',
-    'nav.contact': 'Contact',
+    'nav.tags': 'Tags',
     
     // Hero Section
     'hero.greeting': 'Hi, I\'m',
@@ -122,6 +120,8 @@ export const ui = {
     'theme.dark': 'Dark',
     'language.toggle': 'Português',
     'back.to.top': 'Back to top',
+    'booking.schedule': 'Schedule a Chat',
+    'booking.cta': 'Let\'s talk?',
   }
 } as const;
 

@@ -12,33 +12,32 @@ const t = useTranslations(lang);
 
 const menuItems = [
   { key: 'nav.home', href: '#home' },
-  { key: 'nav.about', href: '#about' },
   { key: 'nav.projects', href: '#projects' },
   { key: 'nav.blog', href: '#blog' },
-  { key: 'nav.certifications', href: '#certifications' },
+  { key: 'nav.tags', href: '#tags' },
 ] as const;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-  <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200/50 dark:border-gray-800/50">
+  <nav class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <div class="flex-shrink-0">
         <a 
           href="#home" 
-          class="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          class="text-lg font-semibold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
         >
-          Neural<span class="text-blue-600 dark:text-blue-400">Thinker</span>
+          Neural Thinker
         </a>
       </div>
       
       <!-- Desktop Navigation -->
       <div class="hidden md:block">
-        <div class="ml-10 flex items-baseline space-x-4">
+        <div class="flex items-center space-x-8">
           {menuItems.map(({ key, href }) => (
             <a
               href={href}
-              class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+              class="nav-link text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
             >
               {t(key)}
             </a>
@@ -47,19 +46,18 @@ const menuItems = [
       </div>
       
       <!-- Controls -->
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center space-x-3">
         <ThemeToggle lang={lang} />
         <LanguageToggle lang={lang} />
         
         <!-- Mobile menu button -->
         <button
           type="button"
-          class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors"
+          class="md:hidden inline-flex items-center justify-center p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none transition-colors"
           id="mobile-menu-button"
         >
           <span class="sr-only">Abrir menu principal</span>
-          <!-- Hamburger icon -->
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
@@ -68,11 +66,11 @@ const menuItems = [
     
     <!-- Mobile Navigation -->
     <div class="md:hidden" id="mobile-menu" style="display: none;">
-      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+      <div class="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-900 border-t border-gray-200/50 dark:border-gray-800/50">
         {menuItems.map(({ key, href }) => (
           <a
             href={href}
-            class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+            class="nav-link-mobile block px-3 py-2 text-base font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
           >
             {t(key)}
           </a>
@@ -114,7 +112,8 @@ const menuItems = [
       if (entry.isIntersecting) {
         // Remove active class from all nav links
         document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(link => {
-          link.classList.remove('text-blue-600', 'dark:text-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
+          link.classList.remove('text-gray-900', 'dark:text-gray-100');
+          link.classList.add('text-gray-600', 'dark:text-gray-400');
         });
         
         // Add active class to current section nav link
@@ -122,7 +121,8 @@ const menuItems = [
         const activeLinks = document.querySelectorAll(`a[href="#${id}"]`);
         activeLinks.forEach(link => {
           if (link.classList.contains('nav-link') || link.classList.contains('nav-link-mobile')) {
-            link.classList.add('text-blue-600', 'dark:text-blue-400', 'bg-blue-50', 'dark:bg-blue-900/20');
+            link.classList.remove('text-gray-600', 'dark:text-gray-400');
+            link.classList.add('text-gray-900', 'dark:text-gray-100');
           }
         });
       }

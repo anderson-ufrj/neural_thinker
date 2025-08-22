@@ -10,122 +10,93 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 pt-16 relative overflow-hidden">
-  <!-- Neural Network Canvas -->
-  <div class="absolute inset-0 z-0">
-    <canvas id="neuralCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-60 dark:opacity-40"></canvas>
-  </div>
-  
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<section id="home" class="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 pt-16">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
     <div class="text-center">
-      <!-- Avatar/Profile Image -->
-      <div class="mb-8">
-        <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 p-1">
-          <img 
-            src="/images/author.jpeg" 
-            alt={site.name}
-            class="w-full h-full rounded-full object-cover"
-          />
-        </div>
+      <!-- Profile Image -->
+      <div class="mb-12">
+        <img 
+          src="/images/author.jpeg" 
+          alt={site.name}
+          class="w-32 h-32 mx-auto rounded-full object-cover border-4 border-gray-200 dark:border-gray-700"
+        />
       </div>
       
-      <!-- Greeting -->
-      <div class="mb-4">
-        <p class="text-lg text-gray-600 dark:text-gray-400 mb-2">
-          {t('hero.greeting')}
-        </p>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-          {site.name}
-        </h1>
-      </div>
+      <!-- Name -->
+      <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+        {site.name}
+      </h1>
       
-      <!-- Role with Typewriter Effect -->
-      <div class="mb-6">
-        <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-600 dark:text-blue-400 min-h-[1.5em]">
-          <span id="typewriter" data-text={site.role[lang]}></span>
-          <span class="animate-pulse">|</span>
-        </h2>
-      </div>
+      <!-- Role -->
+      <h2 class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 mb-8">
+        {site.role[lang]}
+      </h2>
       
       <!-- Description -->
-      <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto mb-6 leading-relaxed">
+      <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
         {site.summary[lang]}
       </p>
       
-      <!-- Philosophy Quote -->
-      <blockquote class="text-sm italic text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-8 border-l-4 border-blue-500 pl-4">
-        {site.philosophy[lang]}
-      </blockquote>
-      
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <!-- CTA Button -->
+      <div class="mb-12">
         <a
-          href="#projects"
-          class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl"
+          href={site.booking}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-gray-900 dark:bg-white dark:text-gray-900 rounded-full hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors shadow-sm"
         >
-          {t('hero.cta.projects')}
-          <svg class="ml-2 -mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
-        </a>
-        
-        <a
-          href="#about"
-          class="inline-flex items-center px-8 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-lg text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl"
-        >
-          {t('hero.cta.about')}
-          <svg class="ml-2 -mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-          </svg>
+          {t('booking.schedule')}
         </a>
       </div>
       
       <!-- Social Links -->
-      <div class="mt-12">
-        <div class="flex justify-center space-x-6">
-          <a
-            href={site.social.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            title="GitHub"
-          >
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-          </a>
-          
-          <a
-            href={site.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            title="LinkedIn"
-          >
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          
-          <a
-            href={site.social.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            title="Twitter"
-          >
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-      
-      <!-- Scroll Down Indicator -->
-      <div class="mt-16 animate-bounce">
-        <a href="#projects" class="inline-block text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+      <div class="flex justify-center space-x-6">
+        <a
+          href={site.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+          title="GitHub"
+        >
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        
+        <a
+          href={site.social.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+          title="LinkedIn"
+        >
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        
+        <a
+          href={site.social.twitter}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+          title="Twitter"
+        >
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+          </svg>
+        </a>
+        
+        <a
+          href="mailto:andersonhs27@gmail.com"
+          class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+          title="Email"
+        >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
           </svg>
         </a>
       </div>
@@ -133,287 +104,3 @@ const t = useTranslations(lang);
   </div>
 </section>
 
-<script>
-  class NeuralNetworkAnimation {
-    constructor(canvas) {
-      this.canvas = canvas;
-      this.ctx = canvas.getContext('2d');
-      this.nodes = [];
-      this.connections = [];
-      this.signals = [];
-      this.animationId = null;
-      this.time = 0;
-      
-      this.setupCanvas();
-      this.createNetwork();
-      this.start();
-    }
-    
-    setupCanvas() {
-      const updateSize = () => {
-        const rect = this.canvas.getBoundingClientRect();
-        this.canvas.width = rect.width;
-        this.canvas.height = rect.height;
-        console.log(`Canvas resized: ${this.canvas.width}x${this.canvas.height}`);
-      };
-      
-      updateSize();
-      window.addEventListener('resize', updateSize);
-    }
-    
-    createNetwork() {
-      const layers = [4, 6, 6, 3]; // Neural network architecture
-      const layerSpacing = this.canvas.width / (layers.length + 1);
-      
-      let nodeId = 0;
-      
-      // Create nodes in layers
-      layers.forEach((nodeCount, layerIndex) => {
-        const layerX = layerSpacing * (layerIndex + 1);
-        const nodeSpacing = this.canvas.height / (nodeCount + 1);
-        
-        for (let i = 0; i < nodeCount; i++) {
-          this.nodes.push({
-            id: nodeId++,
-            x: layerX,
-            y: nodeSpacing * (i + 1),
-            layer: layerIndex,
-            activation: Math.random(),
-            targetActivation: Math.random(),
-            radius: 6
-          });
-        }
-      });
-      
-      // Create connections between adjacent layers
-      layers.forEach((_, layerIndex) => {
-        if (layerIndex < layers.length - 1) {
-          const currentLayerNodes = this.nodes.filter(n => n.layer === layerIndex);
-          const nextLayerNodes = this.nodes.filter(n => n.layer === layerIndex + 1);
-          
-          currentLayerNodes.forEach(fromNode => {
-            nextLayerNodes.forEach(toNode => {
-              this.connections.push({
-                from: fromNode,
-                to: toNode,
-                weight: Math.random() * 2 - 1, // -1 to 1
-                activity: 0
-              });
-            });
-          });
-        }
-      });
-      
-      console.log(`Neural network created: ${this.nodes.length} nodes, ${this.connections.length} connections`);
-    }
-    
-    createSignal(startNode) {
-      // Create a signal that travels through the network
-      const targetNodes = this.connections
-        .filter(c => c.from.id === startNode.id)
-        .map(c => c.to);
-      
-      if (targetNodes.length > 0) {
-        targetNodes.forEach(targetNode => {
-          this.signals.push({
-            fromX: startNode.x,
-            fromY: startNode.y,
-            toX: targetNode.x,
-            toY: targetNode.y,
-            progress: 0,
-            speed: 0.02 + Math.random() * 0.03,
-            intensity: startNode.activation,
-            life: 1.0
-          });
-        });
-      }
-    }
-    
-    update() {
-      this.time += 0.01;
-      
-      // Update node activations with smooth transitions
-      this.nodes.forEach(node => {
-        // Gradually change target activation
-        if (Math.random() < 0.005) {
-          node.targetActivation = Math.random();
-        }
-        
-        // Smooth interpolation
-        const diff = node.targetActivation - node.activation;
-        node.activation += diff * 0.02;
-      });
-      
-      // Create new signals periodically
-      if (Math.random() < 0.1) {
-        const inputNodes = this.nodes.filter(n => n.layer === 0);
-        const randomNode = inputNodes[Math.floor(Math.random() * inputNodes.length)];
-        this.createSignal(randomNode);
-      }
-      
-      // Update signals
-      this.signals = this.signals.filter(signal => {
-        signal.progress += signal.speed;
-        signal.life -= 0.01;
-        return signal.progress < 1 && signal.life > 0;
-      });
-      
-      // Update connection activities based on signals
-      this.connections.forEach(conn => {
-        conn.activity *= 0.95; // Decay
-      });
-      
-      this.signals.forEach(signal => {
-        this.connections.forEach(conn => {
-          const signalX = signal.fromX + (signal.toX - signal.fromX) * signal.progress;
-          const signalY = signal.fromY + (signal.toY - signal.fromY) * signal.progress;
-          const connMidX = (conn.from.x + conn.to.x) / 2;
-          const connMidY = (conn.from.y + conn.to.y) / 2;
-          
-          const dist = Math.sqrt((signalX - connMidX) ** 2 + (signalY - connMidY) ** 2);
-          if (dist < 20) {
-            conn.activity = Math.max(conn.activity, signal.intensity * signal.life);
-          }
-        });
-      });
-    }
-    
-    draw() {
-      // Clear canvas with slight trail effect
-      this.ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
-      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-      
-      // Draw connections
-      this.connections.forEach(conn => {
-        const opacity = 0.1 + conn.activity * 0.4;
-        const lineWidth = 0.5 + conn.activity * 2;
-        
-        // Connection color based on weight
-        const color = conn.weight > 0 ? '59, 130, 246' : '239, 68, 68'; // Blue for positive, red for negative
-        
-        this.ctx.beginPath();
-        this.ctx.moveTo(conn.from.x, conn.from.y);
-        this.ctx.lineTo(conn.to.x, conn.to.y);
-        this.ctx.strokeStyle = `rgba(${color}, ${opacity})`;
-        this.ctx.lineWidth = lineWidth;
-        this.ctx.stroke();
-      });
-      
-      // Draw nodes
-      this.nodes.forEach(node => {
-        const intensity = node.activation;
-        
-        // Node glow effect
-        const gradient = this.ctx.createRadialGradient(
-          node.x, node.y, 0,
-          node.x, node.y, node.radius * 3
-        );
-        gradient.addColorStop(0, `rgba(59, 130, 246, ${intensity * 0.8})`);
-        gradient.addColorStop(1, `rgba(59, 130, 246, 0)`);
-        
-        this.ctx.beginPath();
-        this.ctx.arc(node.x, node.y, node.radius * 3, 0, Math.PI * 2);
-        this.ctx.fillStyle = gradient;
-        this.ctx.fill();
-        
-        // Node core
-        this.ctx.beginPath();
-        this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        this.ctx.fillStyle = `rgba(59, 130, 246, ${0.6 + intensity * 0.4})`;
-        this.ctx.fill();
-        
-        // Node border
-        this.ctx.beginPath();
-        this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        this.ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 + intensity * 0.3})`;
-        this.ctx.lineWidth = 1;
-        this.ctx.stroke();
-      });
-      
-      // Draw signals
-      this.signals.forEach(signal => {
-        const x = signal.fromX + (signal.toX - signal.fromX) * signal.progress;
-        const y = signal.fromY + (signal.toY - signal.fromY) * signal.progress;
-        
-        // Signal trail
-        const gradient = this.ctx.createRadialGradient(x, y, 0, x, y, 8);
-        gradient.addColorStop(0, `rgba(34, 197, 94, ${signal.life * signal.intensity})`);
-        gradient.addColorStop(1, `rgba(34, 197, 94, 0)`);
-        
-        this.ctx.beginPath();
-        this.ctx.arc(x, y, 8, 0, Math.PI * 2);
-        this.ctx.fillStyle = gradient;
-        this.ctx.fill();
-        
-        // Signal core
-        this.ctx.beginPath();
-        this.ctx.arc(x, y, 2, 0, Math.PI * 2);
-        this.ctx.fillStyle = `rgba(34, 197, 94, ${signal.life})`;
-        this.ctx.fill();
-      });
-    }
-    
-    animate() {
-      this.update();
-      this.draw();
-      this.animationId = requestAnimationFrame(() => this.animate());
-    }
-    
-    start() {
-      console.log('Neural network animation started');
-      this.animate();
-    }
-    
-    stop() {
-      if (this.animationId) {
-        cancelAnimationFrame(this.animationId);
-        this.animationId = null;
-      }
-    }
-  }
-
-  // Typewriter effect
-  function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.textContent = '';
-    
-    function type() {
-      if (i < text.length) {
-        element.textContent += text.charAt(i);
-        i++;
-        setTimeout(type, speed);
-      }
-    }
-    
-    type();
-  }
-
-  // Initialize everything
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded, initializing neural network...');
-    
-    // Initialize neural network animation
-    const canvas = document.getElementById('neuralCanvas');
-    if (canvas) {
-      // Wait a bit for layout to settle
-      setTimeout(() => {
-        try {
-          new NeuralNetworkAnimation(canvas);
-        } catch (error) {
-          console.error('Failed to initialize neural network:', error);
-        }
-      }, 300);
-    } else {
-      console.error('Neural canvas not found!');
-    }
-    
-    // Typewriter effect
-    const typewriterElement = document.getElementById('typewriter');
-    if (typewriterElement) {
-      const text = typewriterElement.getAttribute('data-text') || '';
-      setTimeout(() => {
-        typeWriter(typewriterElement, text, 80);
-      }, 1500);
-    }
-  });
-</script>

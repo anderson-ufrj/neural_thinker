@@ -3,9 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Hero from '../../components/Hero.astro';
 import Projects from '../../components/Projects.astro';
-import About from '../../components/About.astro';
 import Blog from '../../components/Blog.astro';
-import Certifications from '../../components/Certifications.astro';
+import Tags from '../../components/Tags.astro';
 import Footer from '../../components/Footer.astro';
 
 const lang = 'en' as const;
@@ -15,10 +14,9 @@ const lang = 'en' as const;
   <Header lang={lang} />
   <main>
     <Hero lang={lang} />
-    <About lang={lang} />
     <Projects lang={lang} />
     <Blog lang={lang} />
-    <Certifications lang={lang} />
+    <Tags lang={lang} />
   </main>
   <Footer lang={lang} />
 </Layout>

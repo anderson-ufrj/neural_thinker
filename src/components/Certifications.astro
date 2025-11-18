@@ -28,20 +28,20 @@ const formatYear = (dateString: string) => {
 };
 ---
 
-<section id="certifications" class="py-20 bg-gray-50 dark:bg-gray-800">
+<section id="certifications" class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+    <div class="text-center mb-16 animate-on-scroll fade-in-up">
+      <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
         {t('certifications.title')}
       </h2>
+      <div class="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-6 rounded-full"></div>
       <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-        {lang === 'pt' 
+        {lang === 'pt'
           ? 'Formação contínua em tecnologias emergentes, com foco em IA, Machine Learning e arquitetura de sistemas. Certificações de universidades e empresas líderes mundiais.'
           : 'Continuous education in emerging technologies, focusing on AI, Machine Learning and systems architecture. Certifications from leading global universities and companies.'
         }
       </p>
-      <div class="w-20 h-1 bg-blue-600 mx-auto mt-6"></div>
     </div>
     
     <!-- Horizontal Timeline -->
@@ -114,13 +114,18 @@ const formatYear = (dateString: string) => {
       </div>
       
       <!-- Scroll indicator -->
-      <div class="text-center mt-4">
-        <p class="text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center">
-          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l4-4m0 0l4 4m-4-4v12"></path>
+      <div class="text-center mt-6">
+        <div class="inline-flex items-center px-6 py-3 bg-blue-50 dark:bg-blue-900/20 rounded-full border-2 border-blue-200 dark:border-blue-800 animate-pulse">
+          <svg class="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
           </svg>
-          {lang === 'pt' ? 'Deslize para ver mais certificações' : 'Scroll to view more certifications'}
-        </p>
+          <p class="text-sm font-medium text-blue-700 dark:text-blue-300">
+            {lang === 'pt' ? 'Deslize horizontalmente para ver mais' : 'Scroll horizontally to view more'}
+          </p>
+          <svg class="w-5 h-5 ml-2 text-blue-600 dark:text-blue-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+          </svg>
+        </div>
       </div>
     </div>
     

@@ -112,14 +112,38 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       // Console easter egg
       console.log(`
       🚀 Neural Thinker - Built with Astro
-      
+
       Hi there, developer! 👨‍💻
-      
+
       Interessado no código? Confira o repositório:
       https://github.com/anderson-ufrj/neural_thinker
-      
+
       🧠 "Code is poetry, architecture is art"
       `);
+
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('animate-on-scroll');
+            // Trigger reflow to restart animation
+            void entry.target.offsetWidth;
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Observe all elements with animate-on-scroll class
+      document.addEventListener('DOMContentLoaded', () => {
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        animatedElements.forEach(el => observer.observe(el));
+      });
     </script>
   </body>
 </html>

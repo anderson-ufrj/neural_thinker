@@ -11,21 +11,27 @@ const t = useTranslations(lang);
 const aboutContent = about[lang];
 ---
 
-<section id="about" class="py-20 bg-white dark:bg-gray-900">
+<section id="about" class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
       <!-- Section Header -->
-      <div class="text-center mb-16">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+      <div class="text-center mb-16 animate-on-scroll fade-in-up">
+        <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
           {t('about.title')}
         </h2>
-        <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+        <div class="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-6 rounded-full"></div>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          {lang === 'pt'
+            ? 'Conheça mais sobre minha trajetória, expertise e filosofia de trabalho'
+            : 'Learn more about my journey, expertise and work philosophy'
+          }
+        </p>
       </div>
-      
+
       <!-- Main Content Grid -->
-      <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
         <!-- Left Column - Main Description -->
-        <div class="space-y-8">
+        <div class="space-y-8 animate-on-scroll slide-in-left stagger-1">
           <!-- Title -->
           <div>
             <h3 class="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-4">
@@ -46,9 +52,9 @@ const aboutContent = about[lang];
             </p>
           </div>
         </div>
-        
+
         <!-- Right Column - Expertise & Experience -->
-        <div class="space-y-8">
+        <div class="space-y-8 animate-on-scroll slide-in-right stagger-2">
           <!-- Expertise -->
           <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
             <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -87,7 +93,7 @@ const aboutContent = about[lang];
       </div>
       
       <!-- Stats/Highlights -->
-      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="mt-12 lg:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
         <div class="p-6">
           <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">5+</div>
           <div class="text-sm text-gray-600 dark:text-gray-400">

@@ -14,18 +14,26 @@ const t = useTranslations(lang);
 const latestPosts = blogPosts.slice(0, 3);
 ---
 
-<section id="blog" class="py-24 bg-gray-50 dark:bg-gray-800">
+<section id="blog" class="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
     <!-- Section Header -->
-    <div class="mb-16">
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-12">
+    <div class="text-center mb-16 animate-on-scroll fade-in-up">
+      <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
         Writing
       </h2>
-      
-      <!-- Blog Posts List -->
-      <div class="space-y-8">
-        {latestPosts.map(post => (
-          <article class="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-b-0 last:pb-0">
+      <div class="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mb-6 rounded-full"></div>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        {lang === 'pt'
+          ? 'Artigos e reflexões sobre tecnologia, desenvolvimento e inovação'
+          : 'Articles and insights about technology, development and innovation'
+        }
+      </p>
+    </div>
+
+    <!-- Blog Posts List -->
+    <div class="space-y-8">
+        {latestPosts.map((post, index) => (
+          <article class={`border-b border-gray-200 dark:border-gray-700 pb-8 last:border-b-0 last:pb-0 animate-on-scroll fade-in-up stagger-${index + 1}`}>
             <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
               <div class="flex-1">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">

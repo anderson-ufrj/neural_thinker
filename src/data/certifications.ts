@@ -44,6 +44,17 @@ export const certifications: Certification[] = [
     skills: ['MCP', 'AI', 'Tool Integration']
   },
   {
+    id: 'spark-kyuubi',
+    title: {
+      pt: 'Spark and Kyuubi – Engineering Deep Dive',
+      en: 'Spark and Kyuubi – Engineering Deep Dive'
+    },
+    issuer: 'BrightTALK',
+    date: '2025-08',
+    featured: true,
+    skills: ['Apache Spark', 'Kyuubi', 'Big Data', 'ELT']
+  },
+  {
     id: 'claude-code-action',
     title: {
       pt: 'Claude Code in Action',

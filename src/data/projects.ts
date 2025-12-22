@@ -106,12 +106,11 @@ export const projects: Project[] = [
       pt: 'Sistema multi-agente de IA para transparência governamental brasileira. Projeto de conclusão de curso desenvolvido com metodologia Design Science Research.',
       en: 'Multi-agent AI system for Brazilian government transparency. Capstone project developed with Design Science Research methodology.'
     },
-    tags: ['FastAPI', 'Next.js', 'Multi-Agent', 'AI/ML', 'LangChain', 'FAISS', 'ChromaDB', 'BERTimbau', 'PostgreSQL'],
-    image: '/images/projects/placeholder.svg',
+    tags: ['FastAPI', 'Next.js', 'Multi-Agent', 'AI/ML', 'LangChain', 'DSPy', 'Maritaca AI', 'PostgreSQL'],
     github: 'https://github.com/anderson-ufrj/cidadao.ai-backend',
-    live: 'https://anderson-ufrj.github.io/cidadao.ai-docs/',
+    live: 'https://cidadao-ai-hub.vercel.app',
     featured: true,
-    date: '2025-01-15'
+    date: '2025-12-17'
   },
   {
     id: 'transparencia-br',
@@ -124,10 +123,9 @@ export const projects: Project[] = [
       en: 'Government transparency analysis with AI and ML via Brazil\'s Transparency Portal API. Implements ML models to detect anomalies in public spending.'
     },
     tags: ['Python', 'Machine Learning', 'Data Science', 'API', 'Anomaly Detection', 'Government Data'],
-    image: '/images/projects/placeholder.svg',
     github: 'https://github.com/anderson-ufrj/TransparenciaBR-Analytics',
     featured: true,
-    date: '2024-01-15'
+    date: '2025-06-15'
   },
   {
     id: 'uai-sint',
@@ -140,10 +138,9 @@ export const projects: Project[] = [
       en: 'Modular platform for automated intelligence gathering with visual analytics and report generation. Integrates multiple public sources with high-reliability scraping.'
     },
     tags: ['Python', 'OSINT', 'Scrapy', 'Intelligence', 'Automation', 'Compliance', 'Analytics'],
-    image: '/images/projects/placeholder.svg',
     github: 'https://github.com/anderson-ufrj/UaiSINT',
     featured: true,
-    date: '2024-08-20'
+    date: '2025-05-20'
   },
   {
     id: 'game-2d-python',
@@ -156,9 +153,8 @@ export const projects: Project[] = [
       en: '2D game development as a Special Topics in Computer Science project'
     },
     tags: ['Python', 'Game Development', 'PyGame', 'IFSULDEMINAS'],
-    image: '/images/projects/placeholder.svg',
     github: 'https://github.com/anderson-ufrj/project-game-py',
-    date: '2023-06-15'
+    date: '2025-07-15'
   },
   {
     id: 'rainbow-compiler',

@@ -18,6 +18,22 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'langchain-maritaca',
+    title: {
+      pt: 'LangChain Maritaca',
+      en: 'LangChain Maritaca'
+    },
+    description: {
+      pt: 'Primeiro pacote open source LangChain para LLMs brasileiros. Integração nativa com Maritaca AI (Sabiá-3.1, Sabiazinho-3) com streaming, async e rate limiting.',
+      en: 'First LangChain open source package for Brazilian LLMs. Native integration with Maritaca AI (Sabiá-3.1, Sabiazinho-3) with streaming, async and rate limiting.'
+    },
+    tags: ['Python', 'LangChain', 'PyPI', 'Open Source', 'LLM', 'Maritaca AI', 'RAG'],
+    github: 'https://github.com/anderson-ufrj/langchain-maritaca',
+    live: 'https://pypi.org/project/langchain-maritaca/',
+    featured: true,
+    date: '2025-12-22'
+  },
+  {
     id: 'cidadao-ai',
     title: {
       pt: 'Cidadão.AI',

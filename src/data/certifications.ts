@@ -32,6 +32,18 @@ export interface Membership {
 // Featured certifications for timeline
 export const certifications: Certification[] = [
   {
+    id: 'mcp-advanced',
+    title: {
+      pt: 'Model Context Protocol (MCP): Advanced Topics',
+      en: 'Model Context Protocol (MCP): Advanced Topics'
+    },
+    issuer: 'Anthropic',
+    date: '2025-09',
+    credentialId: 'eg3tfrrvikxq',
+    featured: true,
+    skills: ['MCP', 'AI', 'Tool Integration']
+  },
+  {
     id: 'claude-code-action',
     title: {
       pt: 'Claude Code in Action',

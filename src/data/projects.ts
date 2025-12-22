@@ -81,6 +81,22 @@ export const projects: Project[] = [
     date: '2025-12-18'
   },
   {
+    id: 'telepatia-ai',
+    title: {
+      pt: 'TelepatiaAI - Medical Scribe',
+      en: 'TelepatiaAI - Medical Scribe'
+    },
+    description: {
+      pt: 'Aplicação fullstack que processa áudio usando LLMs para gerar informações médicas estruturadas. Transcrição em tempo real com Deepgram e extração SOAP.',
+      en: 'Fullstack application that processes audio using LLMs to generate structured medical information. Real-time transcription with Deepgram and SOAP extraction.'
+    },
+    tags: ['FastAPI', 'Next.js', 'Deepgram', 'Claude', 'Supabase', 'WebSocket', 'PWA'],
+    github: 'https://github.com/anderson-ufrj/telepatiaAI',
+    live: 'https://telepatia-ai.vercel.app',
+    featured: true,
+    date: '2025-12-20'
+  },
+  {
     id: 'cidadao-ai',
     title: {
       pt: 'Cidadão.AI',

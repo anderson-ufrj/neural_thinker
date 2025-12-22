@@ -159,5 +159,19 @@ export const projects: Project[] = [
     image: '/images/projects/placeholder.svg',
     github: 'https://github.com/anderson-ufrj/project-game-py',
     date: '2023-06-15'
+  },
+  {
+    id: 'rainbow-compiler',
+    title: {
+      pt: 'Compilador Rainbow Language',
+      en: 'Rainbow Language Compiler'
+    },
+    description: {
+      pt: 'Compilador desenvolvido para a linguagem Rainbow no IFSULDEMINAS. Interface gráfica com suporte a análise léxica, sintática e semântica.',
+      en: 'Compiler for Rainbow programming language at IFSULDEMINAS. GUI with lexical, syntactic and semantic analysis support.'
+    },
+    tags: ['Python', 'Compilers', 'Lexical Analysis', 'Parser', 'Academic', 'GUI'],
+    github: 'https://github.com/anderson-ufrj/rainbow-compiler',
+    date: '2025-07-15'
   }
 ];

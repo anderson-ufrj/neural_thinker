@@ -173,5 +173,20 @@ export const projects: Project[] = [
     tags: ['Python', 'Compilers', 'Lexical Analysis', 'Parser', 'Academic', 'GUI'],
     github: 'https://github.com/anderson-ufrj/rainbow-compiler',
     date: '2025-07-15'
+  },
+  {
+    id: 'learning-chinese',
+    title: {
+      pt: 'Learning Chinese',
+      en: 'Learning Chinese'
+    },
+    description: {
+      pt: 'Aplicação de aprendizado de mandarim com autenticação, flashcards interativos e sistema de progresso. Next.js com Supabase.',
+      en: 'Mandarin learning application with authentication, interactive flashcards and progress tracking. Next.js with Supabase.'
+    },
+    tags: ['Next.js', 'Supabase', 'TypeScript', 'Education', 'Language Learning'],
+    github: 'https://github.com/anderson-ufrj/learning-chinese',
+    live: 'https://learning-chinese-eight.vercel.app',
+    date: '2025-12-11'
   }
 ];

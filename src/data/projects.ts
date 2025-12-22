@@ -139,6 +139,7 @@ export const projects: Project[] = [
     },
     tags: ['Python', 'OSINT', 'Scrapy', 'Intelligence', 'Automation', 'Compliance', 'Analytics'],
     github: 'https://github.com/anderson-ufrj/UaiSINT',
+    live: 'https://anderson-ufrj.github.io/UaiSINT/',
     featured: true,
     date: '2025-05-20'
   },

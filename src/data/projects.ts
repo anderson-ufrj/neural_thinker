@@ -65,6 +65,22 @@ export const projects: Project[] = [
     date: '2025-12-12'
   },
   {
+    id: 'neural-lab',
+    title: {
+      pt: 'Neural LAB',
+      en: 'Neural LAB'
+    },
+    description: {
+      pt: 'Plataforma de serviços AI/ML com design de container ship. Next.js 15, Three.js para visualizações 3D, animações interativas e chat AI integrado.',
+      en: 'AI/ML services platform with container ship design. Next.js 15, Three.js for 3D visualizations, interactive animations and integrated AI chat.'
+    },
+    tags: ['Next.js', 'Three.js', 'TypeScript', 'Tailwind', 'Framer Motion', 'LangChain'],
+    github: 'https://github.com/anderson-ufrj/neural-lab',
+    live: 'https://neural-lab-kappa.vercel.app',
+    featured: true,
+    date: '2025-12-18'
+  },
+  {
     id: 'cidadao-ai',
     title: {
       pt: 'Cidadão.AI',

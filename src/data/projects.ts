@@ -34,6 +34,22 @@ export const projects: Project[] = [
     date: '2025-12-22'
   },
   {
+    id: 'developer-mental-model',
+    title: {
+      pt: 'Developer Mental Model Framework',
+      en: 'Developer Mental Model Framework'
+    },
+    description: {
+      pt: 'Pesquisa científica publicada no Zenodo sobre modelos mentais de desenvolvedores em parceria humano-IA. Framework teórico para Design Science Research.',
+      en: 'Scientific research published on Zenodo about developer mental models in human-AI partnership. Theoretical framework for Design Science Research.'
+    },
+    tags: ['Research', 'Zenodo', 'Design Science', 'AI Partnership', 'Mental Models', 'Academic'],
+    github: 'https://github.com/anderson-ufrj/dmmf_mental-model',
+    live: 'https://zenodo.org/records/14547092',
+    featured: true,
+    date: '2025-12-21'
+  },
+  {
     id: 'cidadao-ai',
     title: {
       pt: 'Cidadão.AI',

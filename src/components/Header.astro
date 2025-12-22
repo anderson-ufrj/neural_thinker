@@ -18,59 +18,58 @@ const menuItems = [
 ] as const;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200/50 dark:border-gray-800/50">
-  <nav class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+<header class="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur-md border-b border-gray-800/50">
+  <nav class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <div class="flex-shrink-0">
-        <a 
-          href="#home" 
-          class="text-lg font-semibold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+        <a
+          href="#home"
+          class="text-lg font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent hover:from-blue-400 hover:to-purple-400 transition-all"
         >
           Neural Thinker
         </a>
       </div>
-      
+
       <!-- Desktop Navigation -->
       <div class="hidden md:block">
-        <div class="flex items-center space-x-8">
+        <div class="flex items-center space-x-1">
           {menuItems.map(({ key, href }) => (
             <a
               href={href}
-              class="nav-link text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+              class="nav-link px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-all"
             >
               {t(key)}
             </a>
           ))}
         </div>
       </div>
-      
+
       <!-- Controls -->
-      <div class="flex items-center space-x-3">
-        <ThemeToggle lang={lang} />
+      <div class="flex items-center space-x-2">
         <LanguageToggle lang={lang} />
-        
+
         <!-- Mobile menu button -->
         <button
           type="button"
-          class="md:hidden inline-flex items-center justify-center p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none transition-colors"
+          class="md:hidden inline-flex items-center justify-center p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all"
           id="mobile-menu-button"
         >
-          <span class="sr-only">Abrir menu principal</span>
+          <span class="sr-only">Open menu</span>
           <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
     </div>
-    
+
     <!-- Mobile Navigation -->
     <div class="md:hidden" id="mobile-menu" style="display: none;">
-      <div class="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-900 border-t border-gray-200/50 dark:border-gray-800/50">
+      <div class="px-2 pt-2 pb-4 space-y-1 bg-gray-900/95 backdrop-blur-md border-t border-gray-800 rounded-b-2xl">
         {menuItems.map(({ key, href }) => (
           <a
             href={href}
-            class="nav-link-mobile block px-3 py-2 text-base font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+            class="nav-link-mobile block px-4 py-3 text-base font-medium text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all"
           >
             {t(key)}
           </a>
@@ -84,14 +83,14 @@ const menuItems = [
   // Mobile menu toggle
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
-  
+
   if (mobileMenuButton && mobileMenu) {
     mobileMenuButton.addEventListener('click', () => {
       const isHidden = mobileMenu.style.display === 'none' || mobileMenu.style.display === '';
       mobileMenu.style.display = isHidden ? 'block' : 'none';
     });
   }
-  
+
   // Close mobile menu when clicking on links
   document.querySelectorAll('.nav-link-mobile').forEach(link => {
     link.addEventListener('click', () => {
@@ -100,36 +99,33 @@ const menuItems = [
       }
     });
   });
-  
+
   // Active navigation highlighting
   const observerOptions = {
     rootMargin: '-80px 0px -80px 0px',
     threshold: 0.1
   };
-  
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Remove active class from all nav links
         document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(link => {
-          link.classList.remove('text-gray-900', 'dark:text-gray-100');
-          link.classList.add('text-gray-600', 'dark:text-gray-400');
+          link.classList.remove('text-white', 'bg-gray-800/50');
+          link.classList.add('text-gray-400');
         });
-        
-        // Add active class to current section nav link
+
         const id = entry.target.getAttribute('id');
         const activeLinks = document.querySelectorAll(`a[href="#${id}"]`);
         activeLinks.forEach(link => {
           if (link.classList.contains('nav-link') || link.classList.contains('nav-link-mobile')) {
-            link.classList.remove('text-gray-600', 'dark:text-gray-400');
-            link.classList.add('text-gray-900', 'dark:text-gray-100');
+            link.classList.remove('text-gray-400');
+            link.classList.add('text-white', 'bg-gray-800/50');
           }
         });
       }
     });
   }, observerOptions);
-  
-  // Observe all sections
+
   document.querySelectorAll('section[id]').forEach(section => {
     observer.observe(section);
   });

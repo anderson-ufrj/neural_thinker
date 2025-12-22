@@ -50,6 +50,21 @@ export const projects: Project[] = [
     date: '2025-12-21'
   },
   {
+    id: 'dspy-cultural-agents',
+    title: {
+      pt: 'DSPy Tutorial: Agentes Culturais',
+      en: 'DSPy Tutorial: Cultural Agents'
+    },
+    description: {
+      pt: 'Tutorial oficial para o framework DSPy (Stanford NLP) demonstrando arquitetura multi-agente com personalidades culturais brasileiras.',
+      en: 'Official tutorial for DSPy framework (Stanford NLP) demonstrating multi-agent architecture with Brazilian cultural personalities.'
+    },
+    tags: ['DSPy', 'Stanford NLP', 'Multi-Agent', 'Tutorial', 'Open Source', 'Documentation'],
+    github: 'https://github.com/stanfordnlp/dspy',
+    featured: true,
+    date: '2025-12-12'
+  },
+  {
     id: 'cidadao-ai',
     title: {
       pt: 'Cidadão.AI',

@@ -55,6 +55,17 @@ export const certifications: Certification[] = [
     skills: ['Apache Spark', 'Kyuubi', 'Big Data', 'ELT']
   },
   {
+    id: 'uaisint-speaker',
+    title: {
+      pt: 'Palestrante UaiSINT Falazada: AI & OSINT',
+      en: 'Guest Speaker UaiSINT Falazada: AI & OSINT'
+    },
+    issuer: 'Ruvixx, Inc.',
+    date: '2025-05',
+    featured: true,
+    skills: ['OSINT', 'AI', 'Public Speaking', 'Cybersecurity']
+  },
+  {
     id: 'claude-code-action',
     title: {
       pt: 'Claude Code in Action',

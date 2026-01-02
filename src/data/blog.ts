@@ -75,7 +75,7 @@ O desenvolvedor do futuro é bilíngue: fala a língua das máquinas e a língua
 
 A talhadeira nos ensinou paciência. A impressora 3D nos libertou para sonhar maior.
 
-E você? Ainda está esculpindo no mármore, ou já começou a imprimir seus sonhos?`,
+E você? Ainda está esculpindo no mármore, ou já começou a imprimir suas ideias?`,
       en: `Picture a sculptor facing a block of marble. In hand, a chisel and hammer. Each strike demands precision, experience, and hours of meticulous work. One mistake can compromise weeks of effort. The final beauty emerges slowly, strike after strike, in an intimate dialogue between artist and stone.
 
 For decades, that's how we programmed.
@@ -114,7 +114,7 @@ The developer of the future is bilingual: speaking the language of machines and 
 
 The chisel taught us patience. The 3D printer freed us to dream bigger.
 
-What about you? Are you still sculpting in marble, or have you started printing your dreams?`
+What about you? Are you still sculpting in marble, or have you started printing your ideas?`
     },
     tags: ['AI Tools', 'Developer Experience', 'Productivity', 'Future of Work', 'Claude Code'],
     date: '2026-01-02',

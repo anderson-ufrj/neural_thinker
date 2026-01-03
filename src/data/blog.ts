@@ -23,6 +23,156 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 'building-hipocrates-medical-ai',
+    title: {
+      pt: 'Construindo Hipócrates: Lições de um Sistema de IA Médica que Pensa como Médico',
+      en: 'Building Hipócrates: Lessons from a Medical AI System That Thinks Like a Doctor'
+    },
+    description: {
+      pt: 'A jornada de criar assistentes de IA para profissionais de saúde que questionam, investigam e raciocinam clinicamente — não apenas respondem.',
+      en: 'The journey of creating AI assistants for healthcare professionals that question, investigate, and reason clinically — not just respond.'
+    },
+    excerpt: {
+      pt: 'A jornada de criar assistentes de IA para profissionais de saúde que questionam, investigam e raciocinam clinicamente — não apenas respondem.',
+      en: 'The journey of creating AI assistants for healthcare professionals that question, investigate, and reason clinically — not just respond.'
+    },
+    content: {
+      pt: `Quando comecei a desenvolver o Sistema Hipócrates, tinha uma pergunta simples: por que a maioria dos chatbots médicos são tão... superficiais? Você digita "paciente com dor no pâncreas" e recebe uma lista genérica de causas de pancreatite. Mas qualquer médico experiente faria uma pausa e perguntaria: "O paciente realmente disse 'dor no pâncreas'? Pacientes geralmente não conhecem anatomia. Onde exatamente é essa dor?"
+
+Essa pergunta mudou tudo.
+
+## O Problema dos Chatbots "Sim, Senhor"
+
+A maioria das implementações de IA em saúde sofre de um problema fundamental: são excessivamente solícitas. Aceitam qualquer input como verdade absoluta e correm para dar respostas. É como um residente de primeiro ano tentando impressionar — responde rápido, mas sem profundidade.
+
+Um sistema de IA médica útil precisa fazer o que bons clínicos fazem: questionar premissas, investigar inconsistências e construir raciocínio antes de concluir.
+
+## Nasceram Hipócrates e Florence
+
+Criei dois assistentes com personalidades distintas:
+
+**Hipócrates** (para médicos) — Inspirado no pai da medicina, usa raciocínio socrático. Quando você diz "paciente com diabetes tipo 1 em uso de metformina", ele responde: "Há uma inconsistência aqui. Metformina é tipicamente usada para DM2, não DM1. O paciente pode estar confundindo o tipo ou o medicamento. Você pode confirmar?"
+
+**Florence** (para enfermeiros) — Inspirada em Florence Nightingale, foca em cuidados práticos e documentação estruturada usando taxonomias NANDA-I, NIC e NOC.
+
+## Decisões Técnicas que Importam
+
+### 1. Roteamento por Idioma
+
+Descobri que LLMs treinados em português brasileiro (como o Sabiá da Maritaca) entendem nuances que modelos globais perdem. "Dor de barriga" não é a mesma coisa que "abdominal pain" — carrega contexto cultural. Por isso, implementei roteamento automático: português vai para Maritaca, outros idiomas para Claude.
+
+### 2. Streaming com Sincronização de IDs
+
+Um desafio interessante: como permitir feedback em mensagens que ainda estão sendo geradas? A solução foi enviar o UUID da mensagem no final do stream, permitindo que o frontend associe feedback à mensagem correta no banco de dados.
+
+\`\`\`json
+{ "content": "chunk de resposta..." }
+{ "done": true, "message_id": "uuid-do-banco" }
+\`\`\`
+
+### 3. Prompts que Ensinam a Pensar
+
+O segredo não está em dar mais informações ao modelo, mas em estruturar como ele deve raciocinar:
+
+- Antes de diagnosticar, pergunte sobre localização, irradiação, intensidade
+- Não aceite diagnósticos prontos — peça evidências
+- Identifique inconsistências entre sintomas e medicamentos
+- Sugira, nunca prescreva
+
+## O Valor do Feedback em IA Médica
+
+Implementamos um sistema de feedback (thumbs up/down + comentários) por mensagem. Parece simples, mas os insights são profundos: médicos não querem respostas longas — querem respostas certas. As mensagens com mais feedback negativo tinham algo em comum: eram prolixas demais.
+
+O dashboard de métricas nos mostrou que a taxa de satisfação subiu significativamente quando encurtamos as respostas e aumentamos as perguntas de clarificação.
+
+## Lições que Transcendem a Medicina
+
+1. **IA útil questiona, não apenas responde** — Em qualquer domínio especializado, aceitar inputs cegamente é perigoso.
+
+2. **Contexto cultural importa** — Treinar em dados locais não é luxo, é necessidade.
+
+3. **Feedback granular > feedback geral** — Saber que "a resposta foi ruim" não ajuda. Saber que "a resposta sobre interações medicamentosas foi imprecisa" permite melhorar.
+
+4. **Limitações explícitas constroem confiança** — Hipócrates sempre avisa: "Não substituo avaliação presencial. Recomendo confirmação com exames." Paradoxalmente, isso aumentou a confiança dos usuários.
+
+## O Futuro
+
+Estamos trabalhando em integração com bulário da ANVISA para checagem automática de interações medicamentosas, sugestão de CID-10 baseada em sintomas, e modo de ensino para residentes.
+
+Mas a maior lição permanece: a melhor IA médica não é a que sabe mais — é a que sabe perguntar melhor.
+
+E você? Já pensou em como seus sistemas de IA poderiam ser mais questionadores?`,
+      en: `When I started developing Sistema Hipócrates, I had a simple question: why are most medical chatbots so... superficial? You type "patient with pancreas pain" and get a generic list of pancreatitis causes. But any experienced doctor would pause and ask: "Did the patient actually say 'pancreas pain'? Patients usually don't know anatomy. Where exactly is this pain?"
+
+That question changed everything.
+
+## The Problem with "Yes, Sir" Chatbots
+
+Most healthcare AI implementations suffer from a fundamental problem: they're excessively accommodating. They accept any input as absolute truth and rush to give answers. It's like a first-year resident trying to impress — responds quickly, but without depth.
+
+A useful medical AI system needs to do what good clinicians do: question assumptions, investigate inconsistencies, and build reasoning before concluding.
+
+## Hipócrates and Florence Were Born
+
+I created two assistants with distinct personalities:
+
+**Hipócrates** (for doctors) — Inspired by the father of medicine, uses Socratic reasoning. When you say "patient with type 1 diabetes on metformin," he responds: "There's an inconsistency here. Metformin is typically used for T2DM, not T1DM. The patient might be confusing the type or the medication. Can you confirm?"
+
+**Florence** (for nurses) — Inspired by Florence Nightingale, focuses on practical care and structured documentation using NANDA-I, NIC, and NOC taxonomies.
+
+## Technical Decisions That Matter
+
+### 1. Language-Based Routing
+
+I discovered that LLMs trained on Brazilian Portuguese (like Maritaca's Sabiá) understand nuances that global models miss. "Dor de barriga" isn't the same as "abdominal pain" — it carries cultural context. So I implemented automatic routing: Portuguese goes to Maritaca, other languages to Claude.
+
+### 2. Streaming with ID Synchronization
+
+An interesting challenge: how to enable feedback on messages still being generated? The solution was to send the message UUID at the end of the stream, allowing the frontend to associate feedback with the correct database message.
+
+\`\`\`json
+{ "content": "response chunk..." }
+{ "done": true, "message_id": "database-uuid" }
+\`\`\`
+
+### 3. Prompts That Teach How to Think
+
+The secret isn't giving the model more information, but structuring how it should reason:
+
+- Before diagnosing, ask about location, radiation, intensity
+- Don't accept ready-made diagnoses — ask for evidence
+- Identify inconsistencies between symptoms and medications
+- Suggest, never prescribe
+
+## The Value of Feedback in Medical AI
+
+We implemented a feedback system (thumbs up/down + comments) per message. Seems simple, but the insights are profound: doctors don't want long answers — they want correct answers. Messages with the most negative feedback had something in common: they were too verbose.
+
+The metrics dashboard showed us that satisfaction rates increased significantly when we shortened responses and increased clarifying questions.
+
+## Lessons That Transcend Medicine
+
+1. **Useful AI questions, doesn't just answer** — In any specialized domain, blindly accepting inputs is dangerous.
+
+2. **Cultural context matters** — Training on local data isn't a luxury, it's a necessity.
+
+3. **Granular feedback > general feedback** — Knowing "the answer was bad" doesn't help. Knowing "the answer about drug interactions was imprecise" allows improvement.
+
+4. **Explicit limitations build trust** — Hipócrates always warns: "I don't replace in-person evaluation. I recommend confirmation with tests." Paradoxically, this increased user trust.
+
+## The Future
+
+We're working on integration with Brazil's ANVISA drug database for automatic drug interaction checking, ICD-10 suggestions based on symptoms, and a teaching mode for residents.
+
+But the biggest lesson remains: the best medical AI isn't the one that knows more — it's the one that knows how to ask better questions.
+
+What about you? Have you thought about how your AI systems could be more questioning?`
+    },
+    tags: ['Medical AI', 'Healthcare', 'LLM', 'Clinical Reasoning', 'Product Development', 'Streaming'],
+    date: '2026-01-03',
+    readingTime: 8
+  },
+  {
     id: 'chisel-to-3d-printer',
     title: {
       pt: 'Da Talhadeira à Impressora 3D: Como a IA Está Transformando o Ofício de Programar',

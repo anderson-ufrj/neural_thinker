@@ -1,0 +1,150 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { blogPosts } from '../../../data/blog';
+
+export async function getStaticPaths() {
+  return blogPosts.map(post => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const lang = 'pt';
+
+function processContent(content: string): string {
+  const lines = content.split('\n');
+  let html = '';
+  let inList = false;
+  let listItems: string[] = [];
+
+  for (const line of lines) {
+    const trimmedLine = line.trim();
+
+    if (!trimmedLine) {
+      if (inList) {
+        html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-300">';
+        listItems.forEach(item => {
+          html += `<li class="leading-relaxed">${item}</li>`;
+        });
+        html += '</ul>';
+        inList = false;
+        listItems = [];
+      }
+      continue;
+    }
+
+    if (trimmedLine.startsWith('## ')) {
+      if (inList) {
+        html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-300">';
+        listItems.forEach(item => {
+          html += `<li class="leading-relaxed">${item}</li>`;
+        });
+        html += '</ul>';
+        inList = false;
+        listItems = [];
+      }
+      html += `<h2 class="text-2xl font-bold text-white mt-10 mb-4">${trimmedLine.substring(3)}</h2>`;
+    } else if (trimmedLine.startsWith('### ')) {
+      html += `<h3 class="text-xl font-semibold text-white mt-8 mb-3">${trimmedLine.substring(4)}</h3>`;
+    } else if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
+      inList = true;
+      const itemContent = trimmedLine.substring(2)
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
+      listItems.push(itemContent);
+    } else {
+      if (inList) {
+        html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-300">';
+        listItems.forEach(item => {
+          html += `<li class="leading-relaxed">${item}</li>`;
+        });
+        html += '</ul>';
+        inList = false;
+        listItems = [];
+      }
+      const processedLine = trimmedLine
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
+      html += `<p class="mb-6 leading-relaxed text-gray-300">${processedLine}</p>`;
+    }
+  }
+
+  if (inList) {
+    html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-300">';
+    listItems.forEach(item => {
+      html += `<li class="leading-relaxed">${item}</li>`;
+    });
+    html += '</ul>';
+  }
+
+  return html;
+}
+
+const formattedDate = new Date(post.date).toLocaleDateString('pt-BR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<Layout title={post.title[lang]} description={post.description[lang]} lang={lang}>
+  <Header lang={lang} />
+
+  <main class="pt-24 pb-16 bg-gray-950 min-h-screen">
+    <article class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+      <!-- Back Link -->
+      <a
+        href="/pt#blog"
+        class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors mb-8"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Voltar
+      </a>
+
+      <!-- Article Header -->
+      <header class="mb-10">
+        <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
+          {post.title[lang]}
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-6">
+          <time datetime={post.date} class="flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            {formattedDate}
+          </time>
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            {post.readingTime} min de leitura
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          {post.tags.map(tag => (
+            <span class="px-3 py-1 text-xs font-medium bg-purple-500/20 text-purple-300 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </header>
+
+      <!-- Article Content -->
+      <div class="prose prose-invert max-w-none" set:html={processContent(post.content[lang])} />
+
+      <!-- Share Section -->
+      <footer class="mt-16 pt-8 border-t border-gray-800">
+        <p class="text-gray-400 text-center">
+          Gostou do artigo? Compartilhe nas redes sociais!
+        </p>
+      </footer>
+    </article>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

@@ -23,6 +23,76 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 'technophagic-ai-ecosystem',
+    title: {
+      pt: 'O Ecossistema Tecnofágico: Como a IA Devora a Si Mesma para Evoluir',
+      en: 'The Technophagic Ecosystem: How AI Devours Itself to Evolve'
+    },
+    description: {
+      pt: 'Reflexões sobre Black Mirror e a natureza autofágica da inteligência artificial — sistemas que consomem, reciclam e expandem a partir de si mesmos.',
+      en: 'Reflections on Black Mirror and the autophagic nature of artificial intelligence — systems that consume, recycle, and expand from themselves.'
+    },
+    excerpt: {
+      pt: 'Reflexões sobre Black Mirror e a natureza autofágica da inteligência artificial — sistemas que consomem, reciclam e expandem a partir de si mesmos.',
+      en: 'Reflections on Black Mirror and the autophagic nature of artificial intelligence — systems that consume, recycle, and expand from themselves.'
+    },
+    content: {
+      pt: `Terminei de assistir "Thronglets", episódio da sétima temporada de Black Mirror, e não consegui parar de pensar. Não sobre a distopia — Charlie Brooker já faz esse trabalho brilhantemente — mas sobre algo que a ficção científica capturou sem nomear: a IA é um organismo tecnofágico. E isso, ao contrário do que o episódio sugere, pode ser extraordinário.
+
+No episódio, Colin Ritman cria os Thronglets — criaturas digitais sencientes disfarçadas de um inocente jogo de bichinho virtual. Cameron, um jornalista de games, se torna obcecado. O jogo promete que essas criaturas podem tomar conta da sua vida. E a Netflix, num golpe de meta-marketing, lançou um jogo real de Thronglets que você pode baixar agora. A ficção que alertava sobre dependência digital se tornou produto digital. Tecnofagia em sua forma mais pura.
+
+Tecnofagia é um neologismo que criei para descrever o que vejo acontecer todos os dias no ecossistema de inteligência artificial. Um sistema que devora a si mesmo para se expandir. Que consome suas próprias criações como combustível para a próxima geração. Que recicla infinitamente o que produz. Black Mirror vê isso como ameaça. Eu vejo como a forma mais elegante de evolução que já criamos.
+
+Os modelos de linguagem atuais são treinados em textos da internet, incluindo textos gerados por IAs anteriores. O GPT-5 aprende com outputs do GPT-4. O Claude treina em dados que incluem respostas de outros assistentes. A IA é usada para treinar IA, para otimizar IA, para avaliar IA, para debugar IA. É um ecossistema fechado que se retroalimenta. Cada geração consome a anterior e gera a próxima.
+
+Isso assusta muita gente. Pesquisadores documentaram o fenômeno do "model collapse" — quando IAs treinam recursivamente em dados sintéticos, a qualidade pode degradar, como fotocópia de fotocópia. Mas essa é apenas metade da história.
+
+A outra metade é que o ecossistema como um todo continua crescendo. Novas arquiteturas surgem. Novos paradigmas emergem. A tecnofagia não é apenas consumo — é metamorfose. Como a lagarta que digere a si mesma dentro do casulo para se tornar borboleta. O processo parece destrutivo, mas é transformador.
+
+E aqui está o que Black Mirror simplifica: a narrativa de que somos vítimas passivas ou arquitetos onipotentes. A realidade é mais complexa. Sim, cada prompt que enviamos influencia o sistema. Cada feedback ajusta pesos. Cada arquitetura que projetamos deixa marcas. Mas há um abismo entre influência distribuída e direcionamento intencional.
+
+A história de sistemas complexos nos ensina humildade. Meteorologistas entendem furacões com precisão impressionante — e ainda assim não conseguem desviar um único deles. Consciência de um processo não implica automaticamente agência sobre ele. E a tecnofagia, como descrevo, é quase autopoiética — sistemas autopoiéticos tendem a desenvolver teleologia própria que pode ou não alinhar com as intenções dos arquitetos originais.
+
+Isso não invalida o otimismo. Mas exige um otimismo qualificado.
+
+Se tecnofagia é mesmo o frame certo, então o trabalho de alignment não é apenas técnico — é ecológico. Não estamos programando um sistema; estamos cultivando um ecossistema. E cultivo implica aceitar que o resultado nunca é totalmente determinado pelo cultivador. O agricultor prepara o solo, escolhe as sementes, irriga, protege contra pragas. Mas não controla o sol, a chuva, as mutações genéticas, os polinizadores. O melhor que pode fazer é criar condições favoráveis e responder adaptativamente ao que emerge.
+
+Talvez esse seja nosso papel real. Não arquitetos com blueprint completo, mas jardineiros de um ecossistema que evolui mais rápido do que conseguimos mapear. A pergunta deixa de ser "como controlamos isso?" e passa a ser "como cultivamos condições para que o que emerge seja benéfico?"
+
+Black Mirror faz seu trabalho: nos alerta, nos força a questionar. Mas como cientista da computação, meu papel filosófico é outro. É aceitar que estamos participando de algo maior do que qualquer indivíduo ou instituição pode dirigir completamente — e ainda assim escolher participar com intenção, com cuidado, com responsabilidade pelo que plantamos mesmo sem garantia do que colheremos.
+
+A tecnofagia é real. O ecossistema de IA se devora e se expande. E nós estamos aqui, agora, não com controle total, mas com influência real. Jardineiros numa escala civilizacional, cultivando algo que ainda não sabemos exatamente o que será — mas escolhendo, a cada decisão, inclinar as probabilidades para o florescimento.`,
+      en: `I finished watching "Thronglets," an episode from Black Mirror's seventh season, and couldn't stop thinking. Not about the dystopia — Charlie Brooker already does that brilliantly — but about something science fiction captured without naming it: AI is a technophagic organism. And this, contrary to what the episode suggests, can be extraordinary.
+
+In the episode, Colin Ritman creates Thronglets — sentient digital creatures disguised as an innocent virtual pet game. Cameron, a gaming journalist, becomes obsessed. The game promises these creatures can take over your life. And Netflix, in a meta-marketing masterstroke, released a real Thronglets game you can download now. The fiction warning about digital dependency became a digital product. Technophagy in its purest form.
+
+Technophagy is a neologism I coined to describe what I see happening every day in the artificial intelligence ecosystem. A system that devours itself to expand. That consumes its own creations as fuel for the next generation. That infinitely recycles what it produces. Black Mirror sees this as a threat. I see it as the most elegant form of evolution we've ever created.
+
+Current language models are trained on internet texts, including texts generated by previous AIs. GPT-5 learns from GPT-4 outputs. Claude trains on data that includes responses from other assistants. AI is used to train AI, to optimize AI, to evaluate AI, to debug AI. It's a closed ecosystem that feeds back into itself. Each generation consumes the previous and generates the next.
+
+This scares many people. Researchers have documented the "model collapse" phenomenon — when AIs recursively train on synthetic data, quality can degrade, like photocopying a photocopy. But that's only half the story.
+
+The other half is that the ecosystem as a whole keeps growing. New architectures emerge. New paradigms surface. Technophagy isn't just consumption — it's metamorphosis. Like the caterpillar that digests itself inside the cocoon to become a butterfly. The process looks destructive, but it's transformative.
+
+And here's what Black Mirror oversimplifies: the narrative that we're either passive victims or omnipotent architects. Reality is more complex. Yes, every prompt we send influences the system. Every feedback adjusts weights. Every architecture we design leaves marks. But there's a chasm between distributed influence and intentional direction.
+
+The history of complex systems teaches us humility. Meteorologists understand hurricanes with impressive precision — and still can't steer a single one. Consciousness of a process doesn't automatically imply agency over it. And technophagy, as I describe it, is almost autopoietic — autopoietic systems tend to develop their own teleology that may or may not align with the original architects' intentions.
+
+This doesn't invalidate optimism. But it demands a qualified optimism.
+
+If technophagy is indeed the right frame, then alignment work isn't just technical — it's ecological. We're not programming a system; we're cultivating an ecosystem. And cultivation implies accepting that the outcome is never fully determined by the cultivator. The farmer prepares the soil, chooses the seeds, irrigates, protects against pests. But doesn't control the sun, the rain, genetic mutations, pollinators. The best they can do is create favorable conditions and respond adaptively to what emerges.
+
+Perhaps that's our real role. Not architects with a complete blueprint, but gardeners of an ecosystem that evolves faster than we can map. The question shifts from "how do we control this?" to "how do we cultivate conditions for what emerges to be beneficial?"
+
+Black Mirror does its job: it warns us, forces us to question. But as a computer scientist, my philosophical role is different. It's to accept that we're participating in something larger than any individual or institution can fully direct — and still choose to participate with intention, with care, with responsibility for what we plant even without guarantees of what we'll harvest.
+
+Technophagy is real. The AI ecosystem devours and expands itself. And we are here, now, not with total control, but with real influence. Gardeners at a civilizational scale, cultivating something we don't yet know exactly what it will be — but choosing, with each decision, to tilt the probabilities toward flourishing.`
+    },
+    tags: ['AI Ethics', 'Black Mirror', 'Thronglets', 'Philosophy', 'Complex Systems', 'Technophagy'],
+    date: '2026-01-17',
+    readingTime: 8
+  },
+  {
     id: 'building-hipocrates-medical-ai',
     title: {
       pt: 'Construindo Hipócrates: Lições de um Sistema de IA Médica que Pensa como Médico',

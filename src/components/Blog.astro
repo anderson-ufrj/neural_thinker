@@ -37,11 +37,14 @@ const latestPosts = blogPosts.slice(0, 3);
               : ''
           }`}
         >
-          <div class={`h-full p-6 ${
-            i === 0
-              ? 'bg-gradient-to-br from-purple-900/50 to-blue-900/50 border border-purple-500/30 hover:border-purple-400/50'
-              : 'bg-gray-800/50 border border-gray-700/50 hover:border-gray-600'
-          }`}>
+          <a
+            href={`/${lang}/blog/${post.id}`}
+            class={`block h-full p-6 ${
+              i === 0
+                ? 'bg-gradient-to-br from-purple-900/50 to-blue-900/50 border border-purple-500/30 hover:border-purple-400/50'
+                : 'bg-gray-800/50 border border-gray-700/50 hover:border-gray-600'
+            }`}
+          >
             <!-- Date & Reading Time -->
             <div class="flex items-center gap-3 text-sm text-gray-500 mb-4">
               <time datetime={post.date}>
@@ -80,175 +83,16 @@ const latestPosts = blogPosts.slice(0, 3);
               </div>
             )}
 
-            <!-- Read More Button -->
-            <button
-              class="read-more-btn flex items-center text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors cursor-pointer"
-              data-post-id={post.id}
-              data-post-title={post.title[lang]}
-              data-post-content={post.content[lang]}
-              data-post-date={post.date}
-              data-post-reading-time={post.readingTime}
-              data-post-tags={post.tags.join(', ')}
-            >
+            <!-- Read More -->
+            <span class="flex items-center text-sm font-medium text-blue-400 group-hover:text-blue-300 transition-colors">
               {t('blog.readMore')}
               <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
               </svg>
-            </button>
-          </div>
+            </span>
+          </a>
         </article>
       ))}
     </div>
   </div>
 </section>
-
-<!-- Blog Post Modal -->
-<div id="blog-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300">
-  <div class="flex items-center justify-center min-h-screen p-4">
-    <div class="bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden transform scale-95 transition-transform duration-300" id="modal-content">
-      <div class="flex justify-between items-center p-6 border-b border-gray-800">
-        <h2 id="modal-title" class="text-2xl font-bold text-white pr-4"></h2>
-        <button id="close-modal" class="text-gray-500 hover:text-white transition-colors text-2xl leading-none p-2 hover:bg-gray-800 rounded-lg">
-          ×
-        </button>
-      </div>
-      <div class="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-        <div id="modal-meta" class="flex items-center gap-4 text-sm text-gray-500 mb-6">
-          <span id="modal-date"></span>
-          <span>•</span>
-          <span id="modal-reading-time"></span>
-          <span>•</span>
-          <span id="modal-tags" class="text-blue-400"></span>
-        </div>
-        <div id="modal-body" class="prose prose-invert max-w-none">
-          <!-- Content will be inserted here -->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Blog modal functionality
-  document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('blog-modal');
-    const modalContent = document.getElementById('modal-content');
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
-    const modalDate = document.getElementById('modal-date');
-    const modalReadingTime = document.getElementById('modal-reading-time');
-    const modalTags = document.getElementById('modal-tags');
-    const closeBtn = document.getElementById('close-modal');
-    const readMoreBtns = document.querySelectorAll('.read-more-btn');
-
-    function formatDate(dateStr, lang) {
-      const date = new Date(dateStr);
-      return date.toLocaleDateString(lang === 'pt' ? 'pt-BR' : 'en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-    }
-
-    function processContent(content) {
-      const parts = content.split('\n\n');
-      let html = '';
-
-      for (let part of parts) {
-        part = part.trim();
-        if (!part) continue;
-
-        if (part.startsWith('## ')) {
-          html += `<h2 class="text-xl font-bold text-white mt-8 mb-4 first:mt-0">${part.substring(3)}</h2>`;
-        } else if (part.includes('\n- ')) {
-          const listItems = part.split('\n- ').map(item => item.trim()).filter(item => item);
-          if (listItems.length > 0) {
-            html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-inside">';
-            listItems.forEach(item => {
-              const cleanItem = item.replace(/^- /, '').replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
-              html += `<li class="text-gray-300 leading-relaxed">${cleanItem}</li>`;
-            });
-            html += '</ul>';
-          }
-        } else {
-          const processedPart = part.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
-          html += `<p class="mb-6 leading-relaxed text-gray-300">${processedPart}</p>`;
-        }
-      }
-
-      return html;
-    }
-
-    readMoreBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const title = btn.dataset.postTitle;
-        const content = btn.dataset.postContent;
-        const date = btn.dataset.postDate;
-        const readingTime = btn.dataset.postReadingTime;
-        const tags = btn.dataset.postTags;
-
-        const lang = window.location.pathname.includes('/en') ? 'en' : 'pt';
-        const readingTimeText = lang === 'pt' ? 'min de leitura' : 'min read';
-
-        modalTitle.textContent = title;
-        modalBody.innerHTML = processContent(content);
-        modalDate.textContent = formatDate(date, lang);
-        modalReadingTime.textContent = `${readingTime} ${readingTimeText}`;
-        modalTags.textContent = tags;
-
-        modal.classList.remove('hidden');
-        setTimeout(() => {
-          modal.classList.remove('opacity-0');
-          modalContent.classList.remove('scale-95');
-          modalContent.classList.add('scale-100');
-        }, 10);
-
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    function closeModal() {
-      modal.classList.add('opacity-0');
-      modalContent.classList.remove('scale-100');
-      modalContent.classList.add('scale-95');
-
-      setTimeout(() => {
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }, 300);
-    }
-
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
-    });
-  });
-</script>
-
-<style>
-  #modal-content {
-    scrollbar-width: thin;
-    scrollbar-color: #374151 #1f2937;
-  }
-
-  #modal-content::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  #modal-content::-webkit-scrollbar-track {
-    background: #1f2937;
-    border-radius: 3px;
-  }
-
-  #modal-content::-webkit-scrollbar-thumb {
-    background: #374151;
-    border-radius: 3px;
-  }
-
-  #modal-content::-webkit-scrollbar-thumb:hover {
-    background: #4b5563;
-  }
-</style>

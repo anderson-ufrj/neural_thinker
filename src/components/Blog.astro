@@ -13,14 +13,14 @@ const t = useTranslations(lang);
 const latestPosts = blogPosts.slice(0, 3);
 ---
 
-<section id="blog" class="py-24 bg-gray-950">
+<section id="blog" class="py-24 bg-gray-50 dark:bg-gray-950">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
     <!-- Section Header -->
     <div class="text-center mb-16">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
         Writing
       </h2>
-      <p class="text-gray-400 max-w-2xl mx-auto">
+      <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
         {lang === 'pt'
           ? 'Reflexões sobre IA, tecnologia e engenharia de software'
           : 'Reflections on AI, technology and software engineering'}
@@ -41,8 +41,8 @@ const latestPosts = blogPosts.slice(0, 3);
             href={`/${lang}/blog/${post.id}`}
             class={`block h-full p-6 ${
               i === 0
-                ? 'bg-gradient-to-br from-purple-900/50 to-blue-900/50 border border-purple-500/30 hover:border-purple-400/50'
-                : 'bg-gray-800/50 border border-gray-700/50 hover:border-gray-600'
+                ? 'bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/50 dark:to-blue-900/50 border border-purple-300 dark:border-purple-500/30 hover:border-purple-400 dark:hover:border-purple-400/50'
+                : 'bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600'
             }`}
           >
             <!-- Date & Reading Time -->
@@ -59,14 +59,14 @@ const latestPosts = blogPosts.slice(0, 3);
             </div>
 
             <!-- Title -->
-            <h3 class={`font-semibold text-white mb-3 group-hover:text-blue-400 transition-colors ${
+            <h3 class={`font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors ${
               i === 0 ? 'text-2xl' : 'text-lg'
             }`}>
               {post.title[lang]}
             </h3>
 
             <!-- Description -->
-            <p class={`text-gray-400 leading-relaxed mb-4 ${
+            <p class={`text-gray-600 dark:text-gray-400 leading-relaxed mb-4 ${
               i === 0 ? 'line-clamp-4' : 'line-clamp-2'
             }`}>
               {post.description[lang]}
@@ -76,7 +76,7 @@ const latestPosts = blogPosts.slice(0, 3);
             {i === 0 && (
               <div class="flex flex-wrap gap-2 mb-4">
                 {post.tags.slice(0, 4).map(tag => (
-                  <span class="px-2 py-1 text-xs font-medium bg-purple-500/20 text-purple-300 rounded-full">
+                  <span class="px-2 py-1 text-xs font-medium bg-purple-200 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 rounded-full">
                     {tag}
                   </span>
                 ))}
@@ -84,7 +84,7 @@ const latestPosts = blogPosts.slice(0, 3);
             )}
 
             <!-- Read More -->
-            <span class="flex items-center text-sm font-medium text-blue-400 group-hover:text-blue-300 transition-colors">
+            <span class="flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:text-blue-500 dark:group-hover:text-blue-300 transition-colors">
               {t('blog.readMore')}
               <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>

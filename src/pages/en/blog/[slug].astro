@@ -25,7 +25,7 @@ function processContent(content: string): string {
 
     if (!trimmedLine) {
       if (inList) {
-        html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-300">';
+        html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-700 dark:text-gray-300">';
         listItems.forEach(item => {
           html += `<li class="leading-relaxed">${item}</li>`;
         });
@@ -38,7 +38,7 @@ function processContent(content: string): string {
 
     if (trimmedLine.startsWith('## ')) {
       if (inList) {
-        html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-300">';
+        html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-700 dark:text-gray-300">';
         listItems.forEach(item => {
           html += `<li class="leading-relaxed">${item}</li>`;
         });
@@ -46,17 +46,17 @@ function processContent(content: string): string {
         inList = false;
         listItems = [];
       }
-      html += `<h2 class="text-2xl font-bold text-white mt-10 mb-4">${trimmedLine.substring(3)}</h2>`;
+      html += `<h2 class="text-2xl font-bold text-gray-900 dark:text-white mt-10 mb-4">${trimmedLine.substring(3)}</h2>`;
     } else if (trimmedLine.startsWith('### ')) {
-      html += `<h3 class="text-xl font-semibold text-white mt-8 mb-3">${trimmedLine.substring(4)}</h3>`;
+      html += `<h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-8 mb-3">${trimmedLine.substring(4)}</h3>`;
     } else if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
       inList = true;
       const itemContent = trimmedLine.substring(2)
-        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900 dark:text-white">$1</strong>');
       listItems.push(itemContent);
     } else {
       if (inList) {
-        html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-300">';
+        html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-700 dark:text-gray-300">';
         listItems.forEach(item => {
           html += `<li class="leading-relaxed">${item}</li>`;
         });
@@ -65,13 +65,13 @@ function processContent(content: string): string {
         listItems = [];
       }
       const processedLine = trimmedLine
-        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
-      html += `<p class="mb-6 leading-relaxed text-gray-300">${processedLine}</p>`;
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900 dark:text-white">$1</strong>');
+      html += `<p class="mb-6 leading-relaxed text-gray-700 dark:text-gray-300">${processedLine}</p>`;
     }
   }
 
   if (inList) {
-    html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-300">';
+    html += '<ul class="mb-6 space-y-2 ml-4 list-disc list-outside text-gray-700 dark:text-gray-300">';
     listItems.forEach(item => {
       html += `<li class="leading-relaxed">${item}</li>`;
     });
@@ -91,12 +91,12 @@ const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
 <Layout title={post.title[lang]} description={post.description[lang]} lang={lang}>
   <Header lang={lang} />
 
-  <main class="pt-24 pb-16 bg-gray-950 min-h-screen">
+  <main class="pt-24 pb-16 bg-gray-50 dark:bg-gray-950 min-h-screen">
     <article class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
       <!-- Back Link -->
       <a
         href="/en#blog"
-        class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors mb-8"
+        class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors mb-8"
       >
         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -106,11 +106,11 @@ const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
 
       <!-- Article Header -->
       <header class="mb-10">
-        <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
+        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
           {post.title[lang]}
         </h1>
 
-        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-6">
+        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-6">
           <time datetime={post.date} class="flex items-center">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -127,7 +127,7 @@ const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
 
         <div class="flex flex-wrap gap-2">
           {post.tags.map(tag => (
-            <span class="px-3 py-1 text-xs font-medium bg-purple-500/20 text-purple-300 rounded-full">
+            <span class="px-3 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 rounded-full">
               {tag}
             </span>
           ))}
@@ -135,11 +135,11 @@ const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
       </header>
 
       <!-- Article Content -->
-      <div class="prose prose-invert max-w-none" set:html={processContent(post.content[lang])} />
+      <div class="prose prose-gray dark:prose-invert max-w-none" set:html={processContent(post.content[lang])} />
 
       <!-- Share Section -->
-      <footer class="mt-16 pt-8 border-t border-gray-800">
-        <p class="text-gray-400 text-center">
+      <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+        <p class="text-gray-600 dark:text-gray-400 text-center">
           Enjoyed this article? Share it on social media!
         </p>
       </footer>
